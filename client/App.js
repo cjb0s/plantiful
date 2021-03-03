@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, FlatList, SafeAreaView } from 'react-native';
 import ApiService from './services/ApiService';
 
 const styles = StyleSheet.create({
@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 3,
     marginHorizontal: 30,
+    marginBottom: 10,
     padding: 10,
   },
   header: {
@@ -35,9 +36,15 @@ export default function App() {
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        <View style={styles.card}>
-          <Text style={styles.header}>{plants[0].common_name}</Text>
-        </View>
+        <FlatList
+          data={plants}
+          keyExtractor={(item) => item._id}
+          renderItem={({ item }) => (
+            <View style={styles.card}>
+              <Text style={styles.header}>{item.common_name}</Text>
+            </View>
+          )}
+        />
       </View>
     </SafeAreaView>
   );
