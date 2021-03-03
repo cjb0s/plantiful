@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import ApiService from './services/ApiService';
 
 const styles = StyleSheet.create({
   container: {
@@ -25,11 +26,17 @@ const styles = StyleSheet.create({
 });
 
 export default function App() {
+  const [plants, setPlants] = useState([]);
+
+  useEffect(() => {
+    ApiService.getPlants().then((plants) => setPlants(plants));
+  }, []);
+
   return (
     <SafeAreaView>
       <View style={styles.container}>
         <View style={styles.card}>
-          <Text style={styles.header}>I'm a plant!</Text>
+          <Text style={styles.header}>{plants[0].common_name}</Text>
         </View>
       </View>
     </SafeAreaView>
