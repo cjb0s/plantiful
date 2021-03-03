@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+import { AnimatedCircularProgress } from 'react-native-circular-progress';
 
 const styles = StyleSheet.create({
   container: {
@@ -23,12 +24,39 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
+  timer: {
+    textAlign: 'center',
+    fontSize: 18,
+  },
+  progress: {
+    marginVertical: 10,
+  },
 });
 
 export default function PlantItem({ plant }) {
   return (
     <View style={styles.card}>
       <Text style={styles.header}>{plant.common_name}</Text>
+      <AnimatedCircularProgress
+        size={100}
+        width={4}
+        backgroundWidth={10}
+        fill={((Math.random() * 10) / plant.water_days) * 100}
+        tintColor="#5da8a0"
+        backgroundColor="#3e5586"
+        rotation={0}
+        lineCap="butt"
+        style={styles.progress}
+      >
+        {(fill) => (
+          <View>
+            <Text style={[styles.timer, styles.header]}>
+              {plant.water_days}
+            </Text>
+            <Text>days left</Text>
+          </View>
+        )}
+      </AnimatedCircularProgress>
     </View>
   );
 }
