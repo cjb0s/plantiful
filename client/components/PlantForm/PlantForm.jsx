@@ -9,7 +9,7 @@ import {
 import styles from './PlantForm.style';
 import ApiService from '../../services/ApiService';
 
-export default function PlantForm() {
+export default function PlantForm({ setUserPlants }) {
   const [plants, setPlants] = useState([]);
   const [query, setQuery] = useState('');
   const [filtered, setFiltered] = useState([]);
@@ -33,9 +33,20 @@ export default function PlantForm() {
     }
   }, [query]);
 
-  const handlePress = (item) => {
+  const handleSuggestionPress = (item) => {
     setQuery(item.common_name);
     setIsFocused(false);
+  };
+
+  const handleSubmit = () => {
+    ApiService.findPlant(query).then((plant) => {
+      delete plant['__v'];
+      delete plant['_id'];
+      ApiService.postPlant(plant).then((res) =>
+        setUserPlants((prevPlants) => [...prevPlants, res]),
+      );
+    });
+    setQuery('');
   };
 
   return (
@@ -65,14 +76,14 @@ export default function PlantForm() {
           renderItem={({ item }) => (
             <TouchableOpacity
               style={styles.suggestion}
-              onPress={() => handlePress(item)}
+              onPress={() => handleSuggestionPress(item)}
             >
               <Text style={styles.flatList}>{item.common_name}</Text>
             </TouchableOpacity>
           )}
         />
       )}
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={() => handleSubmit()}>
         <Text style={styles.buttonText}>Add</Text>
       </TouchableOpacity>
     </View>

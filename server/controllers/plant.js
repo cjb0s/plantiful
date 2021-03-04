@@ -14,6 +14,19 @@ exports.getPlants = async (req, res) => {
   }
 };
 
+exports.findPlant = async (req, res) => {
+  try {
+    const plant = await Plant.findOne({ common_name: req.params.name });
+    console.log(plant);
+    res.status(200);
+    res.send(plant);
+  } catch (error) {
+    console.error('GET PLANTS:', error); // eslint-disable-line no-console
+    res.status(500);
+    res.send(error);
+  }
+};
+
 exports.postPlant = async (req, res) => {
   try {
     const plant = await Plant.create(req.body);

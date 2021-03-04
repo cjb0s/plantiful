@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
+import ApiService from './services/ApiService';
 import MyPlants from './screens/MyPlants/MyPlants';
 import Home from './screens/Home/Home';
 import AddPlant from './screens/AddPlant/AddPlant';
@@ -9,6 +10,12 @@ import AddPlant from './screens/AddPlant/AddPlant';
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+  const [userPlants, setUserPlants] = useState([]);
+
+  useEffect(() => {
+    ApiService.getUserPlants().then((userPlants) => setUserPlants(userPlants));
+  }, []);
+
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -33,8 +40,22 @@ export default function App() {
         }}
       >
         <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Add Plant" component={AddPlant} />
-        <Tab.Screen name="My Plants" component={MyPlants} />
+        <Tab.Screen
+          name="Add Plant"
+          children={(navigation) => (
+            <AddPlant
+              {...navigation}
+              userPlants={userPlants}
+              setUserPlants={setUserPlants}
+            />
+          )}
+        />
+        <Tab.Screen
+          name="My Plants"
+          children={(navigation) => (
+            <MyPlants {...navigation} userPlants={userPlants} />
+          )}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );
