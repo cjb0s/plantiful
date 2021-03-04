@@ -5,7 +5,6 @@ const Plant = require('../models/plant');
 exports.getPlants = async (req, res) => {
   try {
     const plants = await Plant.find();
-    console.log('hello');
     res.status(200);
     res.send(plants);
   } catch (error) {
