@@ -7,7 +7,7 @@ export default StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     padding: 10,
-    marginBottom: 30,
+    fontSize: 16,
   },
   container: {
     marginVertical: 20,
@@ -32,10 +32,13 @@ export default StyleSheet.create({
     paddingLeft: 15,
     marginTop: 15,
     paddingBottom: 15,
-    fontSize: 20,
+    fontSize: 16,
   },
   suggestion: {
     borderBottomWidth: 1,
     borderBottomColor: 'black',
+  },
+  waterMe: {
+    marginTop: 30,
   },
 });

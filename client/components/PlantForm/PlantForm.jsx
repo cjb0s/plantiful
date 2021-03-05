@@ -57,15 +57,14 @@ export default function PlantForm({ setUserPlants }) {
         style={styles.input}
         value={query}
         onChangeText={setQuery}
-        placeholder="Plant name"
+        placeholder="🔎 Plant name"
+        placeholderTextColor="green"
         onFocus={() => {
           setIsFocused(true);
         }}
-        // onBlur={() => {
-        //   setIsFocused(false);
-        // }}
+        clearButtonMode="always"
       />
-      {isFocused && (
+      {query.length && isFocused ? (
         <FlatList
           data={filtered.sort((a, b) => {
             if (a.common_name > b.common_name) return 1;
@@ -83,8 +82,10 @@ export default function PlantForm({ setUserPlants }) {
             </TouchableOpacity>
           )}
         />
-      )}
-      <Text style={styles.title}>When did you last water me?</Text>
+      ) : null}
+      <Text style={[styles.title, styles.waterMe]}>
+        When did you last water me?
+      </Text>
       <CustomDatePicker />
       <TouchableOpacity style={styles.button} onPress={() => handleSubmit()}>
         <Text style={styles.buttonText}>Add</Text>

@@ -1,11 +1,5 @@
 import React, { useState } from 'react';
-import {
-  Platform,
-  Text,
-  TextInput,
-  View,
-  TouchableOpacity,
-} from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 import { Overlay } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import moment from 'moment';
@@ -35,7 +29,7 @@ export default function CustomDatePicker() {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={showOverlay} style={styles.input}>
-        <Text style={styles.placeholder}>{dateString}</Text>
+        <Text style={styles.placeholder}>📅 {dateString}</Text>
       </TouchableOpacity>
       <Overlay
         isVisible={show}
