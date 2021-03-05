@@ -11,8 +11,7 @@ export default StyleSheet.create({
     shadowColor: '#3333',
     shadowOpacity: 1,
     shadowRadius: 3,
-    marginHorizontal: 30,
-    marginVertical: 10,
+    marginBottom: 25,
     padding: 10,
     height: 200,
   },
@@ -28,7 +27,7 @@ export default StyleSheet.create({
     width: 150,
   },
   header: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
   },

@@ -11,9 +11,7 @@ export default StyleSheet.create({
     zIndex: -1,
   },
   container: {
-    paddingVertical: 50,
-    paddingHorizontal: 10,
-    flex: 1,
+    marginVertical: 20,
   },
   button: {
     height: 40,
@@ -27,8 +25,9 @@ export default StyleSheet.create({
     fontWeight: 'bold',
   },
   title: {
-    marginBottom: 10,
+    fontSize: 20,
     fontWeight: 'bold',
+    marginBottom: 10,
   },
   flatList: {
     paddingLeft: 15,

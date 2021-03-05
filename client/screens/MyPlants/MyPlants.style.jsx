@@ -1,8 +1,14 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
+  header: {
+    fontSize: 38,
+    fontWeight: 'bold',
+  },
   container: {
-    paddingTop: 50,
-    paddingHorizontal: 10,
+    padding: 20,
+  },
+  list: {
+    marginVertical: 20,
   },
 });

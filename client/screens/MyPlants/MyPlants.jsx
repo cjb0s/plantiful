@@ -1,17 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { View, FlatList } from 'react-native';
-import ApiService from '../../services/ApiService';
+import React from 'react';
+import { SafeAreaView, View, Text, FlatList } from 'react-native';
 import PlantItem from '../../components/PlantItem/PlantItem';
 import styles from './MyPlants.style';
 
 export default function MyPlants({ userPlants }) {
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={userPlants}
-        keyExtractor={(item) => item._id}
-        renderItem={({ item }) => <PlantItem plant={item} />}
-      />
-    </View>
+    <SafeAreaView>
+      <View style={styles.container}>
+        <Text style={styles.header}>My plants</Text>
+        <FlatList
+          style={styles.list}
+          data={userPlants}
+          keyExtractor={(item) => item._id}
+          renderItem={({ item }) => <PlantItem plant={item} />}
+        />
+      </View>
+    </SafeAreaView>
   );
 }
