@@ -13,14 +13,16 @@ export default StyleSheet.create({
     shadowRadius: 3,
     marginBottom: 25,
     padding: 10,
-    height: 200,
+    height: 240,
   },
   left: {
     width: '40%',
   },
   right: {
-    width: '40%',
+    height: '100%',
+    width: '50%',
     alignItems: 'center',
+    justifyContent: 'space-around',
   },
   image: {
     height: 150,
@@ -31,11 +33,32 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
+  subheader: {
+    fontSize: 14,
+    textAlign: 'center',
+    fontStyle: 'italic',
+  },
   progress: {
     marginVertical: 10,
   },
   timer: {
     textAlign: 'center',
     fontSize: 18,
+  },
+  button: {
+    width: 150,
+    height: 40,
+    backgroundColor: '#1ca3ec',
+    borderRadius: 5,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  buttonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 17,
+    marginLeft: 5,
   },
 });

@@ -2,7 +2,7 @@ import React from 'react';
 import { SafeAreaView, View, Text } from 'react-native';
 import styles from './Home.style';
 
-export default function Home() {
+export default function Home({ userPlants }) {
   return (
     <SafeAreaView>
       <View style={styles.container}>

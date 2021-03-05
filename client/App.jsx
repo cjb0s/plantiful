@@ -39,7 +39,12 @@ export default function App() {
           inactiveTintColor: 'gray',
         }}
       >
-        <Tab.Screen name="Home" component={Home} />
+        <Tab.Screen
+          name="Home"
+          children={(navigation) => (
+            <Home {...navigation} userPlants={userPlants} />
+          )}
+        />
         <Tab.Screen
           name="Add Plant"
           children={(navigation) => (
