@@ -9,6 +9,7 @@ export default StyleSheet.create({
     padding: 20,
   },
   list: {
-    marginVertical: 20,
+    marginTop: 20,
+    marginBottom: 70,
   },
 });

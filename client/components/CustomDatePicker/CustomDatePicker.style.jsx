@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  container: {
+  dateContainer: {
     borderRadius: 100,
   },
   input: {
@@ -10,16 +10,18 @@ export default StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     padding: 10,
+  },
+  input_date: {
     marginBottom: 30,
   },
-  placeholder: {
+  placeholder_date: {
     color: 'green',
     fontSize: 16,
   },
   overlay: {
     width: '100%',
   },
-  header: {
+  overlay_header: {
     backgroundColor: 'white',
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
@@ -30,11 +32,11 @@ export default StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
-  cancel: {
+  overlay_cancel: {
     paddingHorizontal: 15,
     color: 'red',
   },
-  done: {
+  overlay_done: {
     paddingHorizontal: 15,
     color: 'green',
   },

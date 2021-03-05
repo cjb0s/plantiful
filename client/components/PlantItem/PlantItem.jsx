@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Image, Text } from 'react-native';
-import styles from './PlantItem.style';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
+import moment from 'moment';
+import styles from './PlantItem.style';
 
-export default function PlantItem({ plant }) {
+export default function PlantItem({ userPlant }) {
+  const [remainingDays, setRemainingDays] = useState(
+    moment(userPlant.next_water).diff(moment(), 'days') + 1,
+  );
+
+  useEffect(() => {
+    const intervalID = setInterval(() => {
+      setRemainingDays(moment(userPlant.next_water).diff(moment(), 'days') + 1);
+    }, 1800000);
+    return () => {
+      clearInterval(intervalID);
+    };
+  }, []);
+
   return (
     <View style={styles.card}>
       <View style={styles.left}>
@@ -13,12 +27,12 @@ export default function PlantItem({ plant }) {
         />
       </View>
       <View style={styles.right}>
-        <Text style={styles.header}>{plant.common_name}</Text>
+        <Text style={styles.header}>{userPlant.common_name}</Text>
         <AnimatedCircularProgress
           size={90}
           width={4}
           backgroundWidth={10}
-          fill={((Math.random() * 10) / plant.water_days) * 100}
+          fill={(remainingDays / userPlant.water_days) * 100}
           tintColor="#5da8a0"
           backgroundColor="#3e5586"
           rotation={0}
@@ -27,9 +41,7 @@ export default function PlantItem({ plant }) {
         >
           {(fill) => (
             <View>
-              <Text style={[styles.timer, styles.header]}>
-                {plant.water_days}
-              </Text>
+              <Text style={[styles.timer, styles.header]}>{remainingDays}</Text>
               <Text>days left</Text>
             </View>
           )}

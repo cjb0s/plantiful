@@ -12,7 +12,7 @@ export default function CustomDatePicker() {
   const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
 
-  const onChange = (event, selectedDate) => {
+  const handleDateChange = (event, selectedDate) => {
     console.log(selectedDate);
     setDateString(moment(selectedDate).format('Do MMM YYYY'));
     setDate(selectedDate);
@@ -27,9 +27,12 @@ export default function CustomDatePicker() {
   };
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity onPress={showOverlay} style={styles.input}>
-        <Text style={styles.placeholder}>📅 {dateString}</Text>
+    <View style={styles.dateContainer}>
+      <TouchableOpacity
+        onPress={showOverlay}
+        style={[styles.input, styles.input_date]}
+      >
+        <Text style={styles.placeholder_date}>📅 {dateString}</Text>
       </TouchableOpacity>
       <Overlay
         isVisible={show}
@@ -37,12 +40,12 @@ export default function CustomDatePicker() {
         overlayStyle={styles.overlay}
       >
         <View>
-          <View style={styles.header}>
+          <View style={styles.overlay_header}>
             <TouchableOpacity onPress={hideOverlay}>
-              <Text style={styles.cancel}>Cancel</Text>
+              <Text style={styles.overlay_cancel}>Cancel</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={hideOverlay}>
-              <Text style={styles.done}>Done</Text>
+              <Text style={styles.overlay_done}>Done</Text>
             </TouchableOpacity>
           </View>
           <DateTimePicker
@@ -51,7 +54,7 @@ export default function CustomDatePicker() {
             mode={'date'}
             is24Hour={true}
             display="spinner"
-            onChange={onChange}
+            onChange={handleDateChange}
           />
         </View>
       </Overlay>

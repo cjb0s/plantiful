@@ -7,6 +7,7 @@ const UserPlantSchema = new Schema({
   scientific_name: { type: String, required: true },
   origin: { type: String, required: true },
   water_days: { type: Number, required: true },
+  next_water: { type: Date, required: true, default: Date.now },
   light: { type: String, required: true },
   humidity: { type: String, required: true },
   temperature: {

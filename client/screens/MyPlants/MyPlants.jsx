@@ -12,7 +12,7 @@ export default function MyPlants({ userPlants }) {
           style={styles.list}
           data={userPlants}
           keyExtractor={(item) => item._id}
-          renderItem={({ item }) => <PlantItem plant={item} />}
+          renderItem={({ item }) => <PlantItem userPlant={item} />}
         />
       </View>
     </SafeAreaView>
