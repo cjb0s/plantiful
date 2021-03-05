@@ -22,11 +22,12 @@ export default StyleSheet.create({
     height: '100%',
     width: '50%',
     alignItems: 'center',
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
   },
   image: {
     height: 150,
     width: 150,
+    borderRadius: 5,
   },
   header: {
     fontSize: 20,

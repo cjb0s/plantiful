@@ -6,7 +6,7 @@ import moment from 'moment';
 import styles from './PlantItem.style';
 import ApiService from '../../services/ApiService';
 
-export default function PlantItem({ userPlant }) {
+export default function PlantItem({ userPlant, setUserPlants }) {
   const [remainingDays, setRemainingDays] = useState(
     moment(userPlant.next_water).diff(moment(), 'days') + 1,
   );
@@ -29,6 +29,7 @@ export default function PlantItem({ userPlant }) {
       setRemainingDays(
         moment(updatedPlant.next_water).diff(moment(), 'days') + 1,
       );
+      // setUserPlants((prevPlants) => [...prevPlants, updatedPlant]),
       Alert.alert('Your plant has been watered 🎉');
     });
   };
@@ -37,26 +38,26 @@ export default function PlantItem({ userPlant }) {
     if (remainingDays > 0) {
       const unit = remainingDays === 1 ? 'day' : 'days';
       Alert.alert(
-        `This plant still has ${remainingDays} ${unit} left... Are you sure?`,
-        '🤔',
+        `Careful not to overwater your plant! It still has ${remainingDays} ${unit} left...`,
+        '😓',
         [
           {
-            text: 'Yes',
+            text: 'Continue',
             onPress: () => waterMe(),
           },
           {
-            text: 'No',
+            text: 'Cancel',
           },
         ],
       );
     } else {
       Alert.alert(`Are you sure?`, '💦🪴', [
         {
-          text: 'Yes',
+          text: 'Continue',
           onPress: () => waterMe(),
         },
         {
-          text: 'No',
+          text: 'Cancel',
         },
       ]);
     }
@@ -79,10 +80,12 @@ export default function PlantItem({ userPlant }) {
         </TouchableOpacity>
       </View>
       <View style={styles.right}>
-        <Text style={styles.header}>{userPlant.common_name}</Text>
-        <Text style={styles.subheader}>{userPlant.scientific_name}</Text>
+        <View>
+          <Text style={styles.header}>{userPlant.common_name}</Text>
+          <Text style={styles.subheader}>{userPlant.scientific_name}</Text>
+        </View>
         <AnimatedCircularProgress
-          size={90}
+          size={100}
           width={4}
           backgroundWidth={10}
           fill={(remainingDays / userPlant.water_days) * 100}

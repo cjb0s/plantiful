@@ -58,7 +58,11 @@ export default function App() {
         <Tab.Screen
           name="My Plants"
           children={(navigation) => (
-            <MyPlants {...navigation} userPlants={userPlants} />
+            <MyPlants
+              {...navigation}
+              userPlants={userPlants}
+              setUserPlants={setUserPlants}
+            />
           )}
         />
       </Tab.Navigator>

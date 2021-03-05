@@ -3,7 +3,7 @@ import { SafeAreaView, View, Text, FlatList } from 'react-native';
 import PlantItem from '../../components/PlantItem/PlantItem';
 import styles from './MyPlants.style';
 
-export default function MyPlants({ userPlants }) {
+export default function MyPlants({ userPlants, setUserPlants }) {
   return (
     <SafeAreaView>
       <View style={styles.container}>
@@ -12,7 +12,9 @@ export default function MyPlants({ userPlants }) {
           style={styles.list}
           data={userPlants}
           keyExtractor={(item) => item._id}
-          renderItem={({ item }) => <PlantItem userPlant={item} />}
+          renderItem={({ item }) => (
+            <PlantItem userPlant={item} setUserPlants={setUserPlants} />
+          )}
         />
       </View>
     </SafeAreaView>

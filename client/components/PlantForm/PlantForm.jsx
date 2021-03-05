@@ -43,11 +43,8 @@ export default function PlantForm({ setUserPlants }) {
   }, [query]);
 
   const validateInput = (query, plants) => {
-    let res = false;
-    for (let i = 0; i < plants.length; i++) {
-      if (plants[i].common_name === query) res = true;
-    }
-    return res;
+    const filtered = plants.filter((plant) => plant.common_name === query);
+    return filtered.length;
   };
 
   const sortList = (data, key) => {
