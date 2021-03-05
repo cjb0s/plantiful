@@ -4,6 +4,7 @@ import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import moment from 'moment';
 import styles from './PlantItem.style';
+import ApiService from '../../services/ApiService';
 
 export default function PlantItem({ userPlant }) {
   const [remainingDays, setRemainingDays] = useState(
@@ -19,7 +20,16 @@ export default function PlantItem({ userPlant }) {
     };
   }, []);
 
-  const waterMe = () => {};
+  const waterMe = () => {
+    const update = {
+      next_water: moment().add(userPlant.water_days, 'd'),
+    };
+    console.log(update);
+    ApiService.updateNextWater(userPlant._id, update).then((updatedPlant) => {
+      setRemainingDays(moment(updatedPlant.next_water).diff(moment(), 'days'));
+      Alert.alert('Your plant has been watered 🎉');
+    });
+  };
 
   const handlePress = () => {
     if (remainingDays === 1) {
@@ -29,7 +39,7 @@ export default function PlantItem({ userPlant }) {
         [
           {
             text: 'Yes',
-            onPress: () => console.log(moment().format('Do MMM YYYY')),
+            onPress: () => waterMe(),
           },
           {
             text: 'No',
@@ -43,8 +53,7 @@ export default function PlantItem({ userPlant }) {
         [
           {
             text: 'Yes',
-            onPress: () =>
-              console.log('date now', moment().format('Do MMM YYYY')),
+            onPress: () => waterMe(),
           },
           {
             text: 'No',
@@ -55,7 +64,7 @@ export default function PlantItem({ userPlant }) {
       Alert.alert(`Are you sure?`, '💦🪴', [
         {
           text: 'Yes',
-          onPress: () => console.log(moment().format('Do MMM YYYY')),
+          onPress: () => waterMe(),
         },
         {
           text: 'No',

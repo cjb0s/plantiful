@@ -10,5 +10,6 @@ router.post('/plants', plant.postPlant);
 
 router.get('/userplants', userPlant.getUserPlants);
 router.post('/userplants', userPlant.postUserPlant);
+router.put('/userplants/:id', userPlant.updateNextWater);
 
 module.exports = router;

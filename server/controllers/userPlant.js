@@ -25,3 +25,18 @@ exports.postUserPlant = async (req, res) => {
     res.send(error);
   }
 };
+
+exports.updateNextWater = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userPlant = await UserPlant.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
+    console.log(userPlant);
+    res.send(userPlant);
+  } catch (error) {
+    console.error('UPDATE USER PLANT:', error); // eslint-disable-line no-console
+    res.status(500);
+    res.send(error);
+  }
+};
