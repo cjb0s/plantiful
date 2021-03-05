@@ -8,12 +8,12 @@ import ApiService from '../../services/ApiService';
 
 export default function PlantItem({ userPlant }) {
   const [remainingDays, setRemainingDays] = useState(
-    moment(userPlant.next_water).diff(moment(), 'days'),
+    moment(userPlant.next_water).diff(moment(), 'days') + 1,
   );
 
   useEffect(() => {
     const intervalID = setInterval(() => {
-      setRemainingDays(moment(userPlant.next_water).diff(moment(), 'days'));
+      setRemainingDays(moment(userPlant.next_water).diff(moment(), 'days') + 1);
     }, 1800000);
     return () => {
       clearInterval(intervalID);
@@ -26,29 +26,18 @@ export default function PlantItem({ userPlant }) {
     };
     console.log(update);
     ApiService.updateNextWater(userPlant._id, update).then((updatedPlant) => {
-      setRemainingDays(moment(updatedPlant.next_water).diff(moment(), 'days'));
+      setRemainingDays(
+        moment(updatedPlant.next_water).diff(moment(), 'days') + 1,
+      );
       Alert.alert('Your plant has been watered 🎉');
     });
   };
 
   const handlePress = () => {
-    if (remainingDays === 1) {
+    if (remainingDays > 0) {
+      const unit = remainingDays === 1 ? 'day' : 'days';
       Alert.alert(
-        `This plant still has ${remainingDays} day left... Are you sure?`,
-        '🤔',
-        [
-          {
-            text: 'Yes',
-            onPress: () => waterMe(),
-          },
-          {
-            text: 'No',
-          },
-        ],
-      );
-    } else if (remainingDays > 0) {
-      Alert.alert(
-        `This plant still has ${remainingDays} days left... Are you sure?`,
+        `This plant still has ${remainingDays} ${unit} left... Are you sure?`,
         '🤔',
         [
           {
@@ -106,7 +95,11 @@ export default function PlantItem({ userPlant }) {
           {(fill) => (
             <View>
               <Text style={[styles.timer, styles.header]}>{remainingDays}</Text>
-              <Text>days left</Text>
+              {remainingDays === 1 ? (
+                <Text>day left</Text>
+              ) : (
+                <Text>days left</Text>
+              )}
             </View>
           )}
         </AnimatedCircularProgress>
