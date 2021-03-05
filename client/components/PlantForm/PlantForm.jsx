@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import styles from './PlantForm.style';
 import ApiService from '../../services/ApiService';
+import CustomDatePicker from '../CustomDatePicker/CustomDatePicker';
 
 export default function PlantForm({ setUserPlants }) {
   const [plants, setPlants] = useState([]);
@@ -83,6 +84,8 @@ export default function PlantForm({ setUserPlants }) {
           )}
         />
       )}
+      <Text style={styles.title}>When did you last water me?</Text>
+      <CustomDatePicker />
       <TouchableOpacity style={styles.button} onPress={() => handleSubmit()}>
         <Text style={styles.buttonText}>Add</Text>
       </TouchableOpacity>

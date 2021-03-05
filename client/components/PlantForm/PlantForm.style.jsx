@@ -2,13 +2,12 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   input: {
+    backgroundColor: 'white',
     borderColor: 'grey',
     borderWidth: 1,
     borderRadius: 5,
     padding: 10,
-    backgroundColor: 'white',
     marginBottom: 30,
-    zIndex: -1,
   },
   container: {
     marginVertical: 20,

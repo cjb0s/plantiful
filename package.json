@@ -25,7 +25,9 @@
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^1.7.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "moment": "^2.29.1"
+  },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
