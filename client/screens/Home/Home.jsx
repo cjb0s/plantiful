@@ -1,6 +1,6 @@
 import moment from 'moment';
 import React from 'react';
-import { SafeAreaView, View, Text } from 'react-native';
+import { SafeAreaView, View, Text, Image } from 'react-native';
 import styles from './Home.style';
 
 export default function Home({ userPlants }) {
@@ -28,8 +28,22 @@ export default function Home({ userPlants }) {
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        <Text style={styles.header}>Today</Text>
-        {renderNotice()}
+        <View>
+          <Text style={styles.header}>Today</Text>
+          {renderNotice()}
+        </View>
+        <View style={styles.image_container}>
+          <Image
+            source={require('../../assets/AloeVera.jpeg')}
+            style={styles.image}
+          />
+        </View>
+        <View style={styles.topTip}>
+          <Text style={styles.topTip_header}>Top Tip</Text>
+          <Text style={styles.topTip_text}>
+            Most plants prefer for their soil to dry out before rewatering
+          </Text>
+        </View>
       </View>
     </SafeAreaView>
   );
