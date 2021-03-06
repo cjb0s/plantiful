@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Alert,
   Image,
+  ImageBackground,
 } from 'react-native';
 import { Overlay } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
