@@ -4,9 +4,10 @@ export default StyleSheet.create({
   header: {
     fontSize: 38,
     fontWeight: 'bold',
+    paddingHorizontal: 20,
   },
   container: {
-    padding: 20,
+    paddingVertical: 20,
   },
   list: {
     marginTop: 20,

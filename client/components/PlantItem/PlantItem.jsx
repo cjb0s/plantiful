@@ -1,15 +1,76 @@
-import React, { useState, useEffect } from 'react';
-import { View, Image, Text, TouchableOpacity, Alert } from 'react-native';
+import Constants from 'expo-constants';
+import * as Notifications from 'expo-notifications';
+import React, { useState, useEffect, useRef } from 'react';
+import {
+  View,
+  Image,
+  Text,
+  TouchableOpacity,
+  Alert,
+  Platform,
+} from 'react-native';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 import moment from 'moment';
 import styles from './PlantItem.style';
 import ApiService from '../../services/ApiService';
 
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
+
+Notifications.scheduleNotificationAsync({
+  content: {
+    title: 'Time to check on your plants',
+    body: 'Plants need love too!',
+  },
+  trigger: {
+    hour: 16,
+    minute: 28,
+    repeats: true,
+  },
+});
+
 export default function PlantItem({ userPlant, userPlants, setUserPlants }) {
+  const [expoPushToken, setExpoPushToken] = useState('');
+  const [notification, setNotification] = useState(false);
+  const notificationListener = useRef();
+  const responseListener = useRef();
   const [remainingDays, setRemainingDays] = useState(
     moment(userPlant.next_water).diff(moment(), 'days') + 1,
   );
+
+  useEffect(() => {
+    registerForPushNotificationsAsync().then((token) =>
+      setExpoPushToken(token),
+    );
+
+    // This listener is fired whenever a notification is received while the app is foregrounded
+    notificationListener.current = Notifications.addNotificationReceivedListener(
+      (notification) => {
+        setNotification(notification);
+      },
+    );
+
+    // This listener is fired whenever a user taps on or interacts with a notification (works when app is foregrounded, backgrounded, or killed)
+    responseListener.current = Notifications.addNotificationResponseReceivedListener(
+      (response) => {
+        console.log(response);
+      },
+    );
+
+    return () => {
+      Notifications.removeNotificationSubscription(
+        notificationListener.current,
+      );
+      Notifications.removeNotificationSubscription(responseListener.current);
+    };
+  }, []);
 
   useEffect(() => {
     const intervalID = setInterval(() => {
@@ -36,7 +97,7 @@ export default function PlantItem({ userPlant, userPlants, setUserPlants }) {
     });
   };
 
-  const handlePress = () => {
+  const handleWaterMe = () => {
     if (remainingDays > 0) {
       const unit = remainingDays === 1 ? 'day' : 'days';
       Alert.alert(
@@ -68,17 +129,19 @@ export default function PlantItem({ userPlant, userPlants, setUserPlants }) {
   return (
     <View style={styles.card}>
       <View style={styles.left}>
-        <Image
-          source={require('../../assets/AloeVera.jpeg')}
-          style={styles.image}
-        />
-        <TouchableOpacity style={styles.button} onPress={handlePress}>
+        <View style={styles.image_container}>
+          <Image
+            source={require('../../assets/AloeVera.jpeg')}
+            style={styles.image}
+          />
+        </View>
+        <TouchableOpacity style={styles.waterMe} onPress={handleWaterMe}>
           <MaterialCommunityIcons
             name="watering-can-outline"
             size={24}
             color="white"
           />
-          <Text style={styles.buttonText}>Water me!</Text>
+          <Text style={styles.waterMe_text}>Water me!</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.right}>
@@ -108,7 +171,63 @@ export default function PlantItem({ userPlant, userPlants, setUserPlants }) {
             </View>
           )}
         </AnimatedCircularProgress>
+        <TouchableOpacity style={styles.delete}>
+          <MaterialIcons name="highlight-remove" size={24} color="grey" />
+        </TouchableOpacity>
       </View>
     </View>
   );
 }
+
+async function registerForPushNotificationsAsync() {
+  let token;
+  if (Constants.isDevice) {
+    const {
+      status: existingStatus,
+    } = await Notifications.getPermissionsAsync();
+    let finalStatus = existingStatus;
+    if (existingStatus !== 'granted') {
+      const { status } = await Notifications.requestPermissionsAsync();
+      finalStatus = status;
+    }
+    if (finalStatus !== 'granted') {
+      alert('Failed to get push token for push notification!');
+      return;
+    }
+    token = (await Notifications.getExpoPushTokenAsync()).data;
+  } else {
+    alert('Must use physical device for Push Notifications');
+  }
+
+  if (Platform.OS === 'android') {
+    Notifications.setNotificationChannelAsync('default', {
+      name: 'default',
+      importance: Notifications.AndroidImportance.MAX,
+      vibrationPattern: [0, 250, 250, 250],
+      lightColor: '#FF231F7C',
+    });
+  }
+
+  return token;
+}
+
+// async function schedulePushNotification() {
+//   const notification = remainingDays
+//     ? {
+//         title: 'Plants needing love',
+//         body: 'I am working!',
+//       }
+//     : {
+//         title: 'All good',
+//         body: 'I am working!',
+//       };
+
+//   await Notifications.scheduleNotificationAsync({
+//     content: notification,
+//     trigger: {
+//       hour: 10,
+//       minute: 00,
+//       repeats: true,
+//     },
+//   });
+// }
