@@ -13,4 +13,10 @@ export default StyleSheet.create({
     marginTop: 20,
     marginBottom: 70,
   },
+  notice: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginVertical: 20,
+    paddingHorizontal: 20,
+  },
 });

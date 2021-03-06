@@ -8,18 +8,22 @@ export default function MyPlants({ userPlants, setUserPlants }) {
     <SafeAreaView>
       <View style={styles.container}>
         <Text style={styles.header}>My plants</Text>
-        <FlatList
-          style={styles.list}
-          data={userPlants}
-          keyExtractor={(item) => item._id}
-          renderItem={({ item }) => (
-            <PlantItem
-              userPlant={item}
-              userPlants={userPlants}
-              setUserPlants={setUserPlants}
-            />
-          )}
-        />
+        {userPlants.length ? (
+          <FlatList
+            style={styles.list}
+            data={userPlants}
+            keyExtractor={(item) => item._id}
+            renderItem={({ item }) => (
+              <PlantItem
+                userPlant={item}
+                userPlants={userPlants}
+                setUserPlants={setUserPlants}
+              />
+            )}
+          />
+        ) : (
+          <Text style={styles.notice}>Add some plants to get started! 🪴</Text>
+        )}
       </View>
     </SafeAreaView>
   );

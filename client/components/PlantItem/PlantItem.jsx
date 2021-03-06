@@ -30,8 +30,8 @@ Notifications.scheduleNotificationAsync({
     body: 'Plants need love too!',
   },
   trigger: {
-    hour: 16,
-    minute: 28,
+    hour: 9,
+    minute: 0,
     repeats: true,
   },
 });

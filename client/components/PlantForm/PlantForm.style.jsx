@@ -25,15 +25,29 @@ export default StyleSheet.create({
   input_date: {
     marginBottom: 30,
   },
-  flatList: {
+  suggestion_commonName: {
     paddingLeft: 15,
     marginTop: 15,
-    paddingBottom: 15,
-    fontSize: 16,
+    fontSize: 18,
+    fontWeight: 'bold',
   },
   suggestion: {
     borderBottomWidth: 1,
     borderBottomColor: 'black',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  suggestion_scientificName: {
+    paddingLeft: 15,
+    paddingBottom: 15,
+    fontSize: 16,
+    fontStyle: 'italic',
+  },
+  suggestion_image: {
+    height: 45,
+    width: 45,
+    borderRadius: 30,
   },
   dateContainer: {
     borderRadius: 100,

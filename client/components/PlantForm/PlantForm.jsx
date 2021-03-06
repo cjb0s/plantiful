@@ -6,6 +6,7 @@ import {
   FlatList,
   TouchableOpacity,
   Alert,
+  Image,
 } from 'react-native';
 import { Overlay } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -35,8 +36,10 @@ export default function PlantForm({ setUserPlants }) {
     if (!query) setFiltered(plants);
     else {
       let search = query.toLowerCase();
-      const newFiltered = plants.filter((plant) =>
-        plant.common_name.toLowerCase().startsWith(search),
+      const newFiltered = plants.filter(
+        (plant) =>
+          plant.common_name.toLowerCase().startsWith(search) ||
+          plant.scientific_name.toLowerCase().startsWith(search),
       );
       setFiltered(newFiltered);
     }
@@ -118,7 +121,18 @@ export default function PlantForm({ setUserPlants }) {
               style={styles.suggestion}
               onPress={() => handleSuggestionPress(item)}
             >
-              <Text style={styles.flatList}>{item.common_name}</Text>
+              <View>
+                <Text style={styles.suggestion_commonName}>
+                  {item.common_name}
+                </Text>
+                <Text style={styles.suggestion_scientificName}>
+                  {item.scientific_name}
+                </Text>
+              </View>
+              <Image
+                source={require('../../assets/AloeVera.jpeg')}
+                style={styles.suggestion_image}
+              />
             </TouchableOpacity>
           )}
         />
