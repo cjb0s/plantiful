@@ -117,15 +117,28 @@ export default function PlantItem({ userPlant, userPlants, setUserPlants }) {
     const update = {
       next_water: moment().add(userPlant.water_days, 'd'),
     };
-    const updatedUserPlants = userPlants.filter(
-      (plant) => plant._id !== userPlant._id,
-    );
     ApiService.updateNextWater(userPlant._id, update).then((updatedPlant) => {
       setRemainingDays(
         moment(updatedPlant.next_water).diff(moment(), 'days') + 1,
       );
-      setUserPlants(() => [...updatedUserPlants, updatedPlant]),
-        Alert.alert('Your plant has been watered 🎉');
+      Alert.alert(`Your ${userPlant.common_name} has been watered 🎉`);
+      setUserPlants((plants) => {
+        const index = plants.findIndex(
+          (plant) => plant._id === updatedPlant._id,
+        );
+        const plantsCopy = [...plants];
+        plantsCopy.splice(index, 1, updatedPlant);
+        return plantsCopy;
+      });
+    });
+  };
+
+  const deleteMe = () => {
+    ApiService.deleteUserPlant(userPlant._id).then(() => {
+      setUserPlants((userPlants) =>
+        userPlants.filter((plant) => plant._id !== userPlant._id),
+      );
+      Alert.alert(`Your ${userPlant.common_name} has been removed... 🪦`);
     });
   };
 
@@ -133,7 +146,7 @@ export default function PlantItem({ userPlant, userPlants, setUserPlants }) {
     if (remainingDays > 0) {
       const unit = remainingDays === 1 ? 'day' : 'days';
       Alert.alert(
-        `Careful not to overwater your plant! It still has ${remainingDays} ${unit} left...`,
+        `Careful not to overwater your ${userPlant.common_name}! It still has ${remainingDays} ${unit} left...`,
         '😓',
         [
           {
@@ -156,6 +169,22 @@ export default function PlantItem({ userPlant, userPlants, setUserPlants }) {
         },
       ]);
     }
+  };
+
+  const handleDelete = () => {
+    Alert.alert(
+      `Are you sure you want to delete your ${userPlant.common_name}?`,
+      '😱',
+      [
+        {
+          text: 'Continue',
+          onPress: () => deleteMe(),
+        },
+        {
+          text: 'Cancel',
+        },
+      ],
+    );
   };
 
   return (
@@ -203,7 +232,7 @@ export default function PlantItem({ userPlant, userPlants, setUserPlants }) {
             </View>
           )}
         </AnimatedCircularProgress>
-        <TouchableOpacity style={styles.delete}>
+        <TouchableOpacity style={styles.delete} onPress={handleDelete}>
           <MaterialIcons name="highlight-remove" size={24} color="grey" />
         </TouchableOpacity>
       </View>
