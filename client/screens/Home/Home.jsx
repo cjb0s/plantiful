@@ -5,8 +5,6 @@ import styles from './Home.style';
 
 export default function Home({ userPlants }) {
   const checkSchedule = (plants) => {
-    // plants.forEach((plant) => console.log(plant.next_water));
-
     const filtered = plants.filter(
       (plant) =>
         moment(plant.next_water).add(1, 'days').format('Do MMM YYYY') ===
@@ -15,15 +13,23 @@ export default function Home({ userPlants }) {
     return filtered.length;
   };
 
+  const renderNotice = () => {
+    if (!userPlants.length) {
+      return (
+        <Text style={styles.notice}>You don't have any plants yet! 🪴</Text>
+      );
+    } else if (checkSchedule(userPlants)) {
+      return <Text style={styles.notice}>Your plants need some love! ❤️</Text>;
+    } else {
+      return <Text style={styles.notice}>Your plants are all happy! 😊</Text>;
+    }
+  };
+
   return (
     <SafeAreaView>
       <View style={styles.container}>
         <Text style={styles.header}>Today</Text>
-        {checkSchedule(userPlants) ? (
-          <Text style={styles.notice}>Your plants need some love! ❤️</Text>
-        ) : (
-          <Text style={styles.notice}>Your plants are all happy! 😊</Text>
-        )}
+        {renderNotice()}
       </View>
     </SafeAreaView>
   );
