@@ -40,3 +40,15 @@ exports.updateNextWater = async (req, res) => {
     res.send(error);
   }
 };
+
+exports.deleteUserPlant = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await UserPlant.findByIdAndDelete(id);
+    res.sendStatus(204);
+  } catch (error) {
+    console.error('DELETE USER PLANT:', error); // eslint-disable-line no-console
+    res.status(500);
+    res.send(error);
+  }
+};
