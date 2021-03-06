@@ -6,7 +6,7 @@ import moment from 'moment';
 import styles from './PlantItem.style';
 import ApiService from '../../services/ApiService';
 
-export default function PlantItem({ userPlant, setUserPlants }) {
+export default function PlantItem({ userPlant, userPlants, setUserPlants }) {
   const [remainingDays, setRemainingDays] = useState(
     moment(userPlant.next_water).diff(moment(), 'days') + 1,
   );
@@ -24,13 +24,15 @@ export default function PlantItem({ userPlant, setUserPlants }) {
     const update = {
       next_water: moment().add(userPlant.water_days, 'd'),
     };
-    console.log(update);
+    const updatedUserPlants = userPlants.filter(
+      (plant) => plant._id !== userPlant._id,
+    );
     ApiService.updateNextWater(userPlant._id, update).then((updatedPlant) => {
       setRemainingDays(
         moment(updatedPlant.next_water).diff(moment(), 'days') + 1,
       );
-      // setUserPlants((prevPlants) => [...prevPlants, updatedPlant]),
-      Alert.alert('Your plant has been watered 🎉');
+      setUserPlants(() => [...updatedUserPlants, updatedPlant]),
+        Alert.alert('Your plant has been watered 🎉');
     });
   };
 

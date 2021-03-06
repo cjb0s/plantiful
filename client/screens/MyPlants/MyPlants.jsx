@@ -13,7 +13,11 @@ export default function MyPlants({ userPlants, setUserPlants }) {
           data={userPlants}
           keyExtractor={(item) => item._id}
           renderItem={({ item }) => (
-            <PlantItem userPlant={item} setUserPlants={setUserPlants} />
+            <PlantItem
+              userPlant={item}
+              userPlants={userPlants}
+              setUserPlants={setUserPlants}
+            />
           )}
         />
       </View>
