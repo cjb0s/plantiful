@@ -20,7 +20,7 @@ export default function MyPlants({ userPlants, setUserPlants }) {
             )}
           />
         ) : (
-          <Text style={styles.notice}>Add some plants to get started! 🪴</Text>
+          <Text style={styles.notice}>add a plant to get started</Text>
         )}
       </View>
     </SafeAreaView>

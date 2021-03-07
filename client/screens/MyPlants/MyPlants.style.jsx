@@ -20,9 +20,9 @@ export default StyleSheet.create({
   },
 
   notice: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginVertical: 20,
+    fontSize: 30,
+    fontFamily: 'Akaya-Telivigala',
+    color: '#295240',
     paddingHorizontal: 20,
   },
 });
