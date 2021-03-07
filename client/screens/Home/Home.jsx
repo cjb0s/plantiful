@@ -15,33 +15,31 @@ export default function Home({ userPlants }) {
 
   const renderNotice = () => {
     if (!userPlants.length) {
-      return (
-        <Text style={styles.notice}>You don't have any plants yet! 🪴</Text>
-      );
+      return <Text style={styles.notice}>you don't have any plants</Text>;
     } else if (checkSchedule(userPlants)) {
-      return <Text style={styles.notice}>Your plants need some love! ❤️</Text>;
+      return <Text style={styles.notice}>your plants need some love</Text>;
     } else {
-      return <Text style={styles.notice}>Your plants are all happy! 😊</Text>;
+      return <Text style={styles.notice}>all your plants are happy</Text>;
     }
   };
 
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        <View>
-          <Text style={styles.header}>Today</Text>
+        <View style={styles.header_container}>
+          <Text style={styles.header}>today</Text>
           {renderNotice()}
         </View>
         <View style={styles.image_container}>
           <Image
-            source={require('../../assets/AloeVera.jpeg')}
+            source={require('../../assets/images/Home.jpeg')}
             style={styles.image}
           />
         </View>
         <View style={styles.topTip}>
-          <Text style={styles.topTip_header}>Top Tip</Text>
+          <Text style={styles.topTip_header}>plantifact</Text>
           <Text style={styles.topTip_text}>
-            Most plants prefer for their soil to dry out before rewatering
+            most plants prefer for their soil to dry out before rewatering
           </Text>
         </View>
       </View>

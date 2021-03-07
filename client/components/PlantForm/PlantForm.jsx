@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { Overlay } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { Ionicons } from '@expo/vector-icons';
 import moment from 'moment';
 import styles from './PlantForm.style';
 import ApiService from '../../services/ApiService';
@@ -98,14 +99,13 @@ export default function PlantForm({ setUserPlants }) {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.label}>Which plant are you looking for?</Text>
+    <View>
       <TextInput
         style={[styles.input, styles.input_name]}
         value={query}
         onChangeText={setQuery}
-        placeholder="🔎 Plant name"
-        placeholderTextColor="green"
+        placeholder="plant name"
+        placeholderTextColor="#295240"
         onFocus={() => {
           setIsFocused(true);
         }}
@@ -130,22 +130,31 @@ export default function PlantForm({ setUserPlants }) {
                 </Text>
               </View>
               <Image
-                source={require('../../assets/AloeVera.jpeg')}
+                source={require('../../assets/images/AloeVera.jpeg')}
                 style={styles.suggestion_image}
               />
             </TouchableOpacity>
           )}
         />
       ) : null}
-      <Text style={[styles.label, styles.label_date]}>
-        When did you last water me?
-      </Text>
+      <TextInput
+        style={[styles.input, styles.input_name]}
+        value={query}
+        onChangeText={setQuery}
+        placeholder="plant nickname"
+        placeholderTextColor="#295240"
+        onFocus={() => {
+          setIsFocused(true);
+        }}
+        clearButtonMode="always"
+      />
+      <Text style={styles.label}>when did you last water me?</Text>
       <View style={styles.dateContainer}>
         <TouchableOpacity
           onPress={showOverlay}
           style={[styles.input, styles.input_date]}
         >
-          <Text style={styles.placeholder_date}>📅 {dateString}</Text>
+          <Text style={styles.placeholder_date}>{dateString}</Text>
         </TouchableOpacity>
         <Overlay
           isVisible={show}
@@ -173,7 +182,7 @@ export default function PlantForm({ setUserPlants }) {
         </Overlay>
       </View>
       <TouchableOpacity style={styles.button} onPress={() => handleSubmit()}>
-        <Text style={styles.buttonText}>Add</Text>
+        <Ionicons name="ios-add-circle" size={55} color="#295240" />
       </TouchableOpacity>
     </View>
   );

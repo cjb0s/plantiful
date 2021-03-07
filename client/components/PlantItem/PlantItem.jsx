@@ -68,7 +68,7 @@ async function registerForPushNotificationsAsync() {
   return token;
 }
 
-export default function PlantItem({ userPlant, userPlants, setUserPlants }) {
+export default function PlantItem({ userPlant, setUserPlants }) {
   const [expoPushToken, setExpoPushToken] = useState('');
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
@@ -189,51 +189,44 @@ export default function PlantItem({ userPlant, userPlants, setUserPlants }) {
 
   return (
     <View style={styles.card}>
-      <View style={styles.left}>
-        <View style={styles.image_container}>
-          <Image
-            source={require('../../assets/AloeVera.jpeg')}
-            style={styles.image}
-          />
-        </View>
-        <TouchableOpacity style={styles.waterMe} onPress={handleWaterMe}>
-          <MaterialCommunityIcons
-            name="watering-can-outline"
-            size={24}
-            color="white"
-          />
-          <Text style={styles.waterMe_text}>Water me!</Text>
-        </TouchableOpacity>
+      <View style={styles.top}>
+        <Text style={styles.header}>{userPlant.common_name.toLowerCase()}</Text>
+        <Text style={styles.subheader}>
+          {userPlant.scientific_name.toLowerCase()}
+        </Text>
       </View>
-      <View style={styles.right}>
-        <View>
-          <Text style={styles.header}>{userPlant.common_name}</Text>
-          <Text style={styles.subheader}>{userPlant.scientific_name}</Text>
-        </View>
+      <View style={styles.middle}>
+        <Image
+          source={require('../../assets/images/AloeVera.jpeg')}
+          style={styles.image}
+        />
         <AnimatedCircularProgress
-          size={100}
+          size={120}
           width={4}
-          backgroundWidth={10}
+          backgroundWidth={0}
           fill={(remainingDays / userPlant.water_days) * 100}
-          tintColor="#5da8a0"
-          backgroundColor="#3e5586"
-          rotation={0}
-          lineCap="butt"
+          tintColor="#fcd9c8"
+          rotation={330}
+          lineCap="round"
           style={styles.progress}
         >
           {(fill) => (
-            <View>
-              <Text style={[styles.timer, styles.header]}>{remainingDays}</Text>
-              {remainingDays === 1 ? (
-                <Text>day left</Text>
-              ) : (
-                <Text>days left</Text>
-              )}
+            <View style={styles.timer_container}>
+              <Text style={styles.timer}>{remainingDays}</Text>
             </View>
           )}
         </AnimatedCircularProgress>
+      </View>
+      <View style={styles.bottom}>
+        <TouchableOpacity style={styles.waterMe} onPress={handleWaterMe}>
+          <MaterialCommunityIcons
+            name="watering-can-outline"
+            size={30}
+            color="#fcd9c8"
+          />
+        </TouchableOpacity>
         <TouchableOpacity style={styles.delete} onPress={handleDelete}>
-          <MaterialIcons name="highlight-remove" size={24} color="grey" />
+          <MaterialIcons name="highlight-remove" size={24} color="#fcd9c8" />
         </TouchableOpacity>
       </View>
     </View>

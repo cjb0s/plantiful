@@ -2,6 +2,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
+import { StatusBar } from 'expo-status-bar';
+import AppLoading from 'expo-app-loading';
+import { useFonts } from 'expo-font';
+import { BerkshireSwash_400Regular } from '@expo-google-fonts/berkshire-swash';
+import {
+  Cantarell_700Bold,
+  Cantarell_700Bold_Italic,
+} from '@expo-google-fonts/cantarell';
 import ApiService from './services/ApiService';
 import MyPlants from './screens/MyPlants/MyPlants';
 import Home from './screens/Home/Home';
@@ -11,10 +19,19 @@ const Tab = createBottomTabNavigator();
 
 export default function App() {
   const [userPlants, setUserPlants] = useState([]);
-
   useEffect(() => {
     ApiService.getUserPlants().then((userPlants) => setUserPlants(userPlants));
   }, []);
+
+  let [fontsLoaded] = useFonts({
+    BerkshireSwash_400Regular,
+    'Akaya-Telivigala': require('./assets/fonts/Akaya_Telivigala/AkayaTelivigala-Regular.ttf'),
+    'Akaya-Kanadaka': require('./assets/fonts/Akaya_Kanadaka/AkayaKanadaka-Regular.ttf'),
+    Cantarell_700Bold,
+    Cantarell_700Bold_Italic,
+  });
+
+  if (!fontsLoaded) return <AppLoading />;
 
   return (
     <NavigationContainer>
@@ -35,8 +52,13 @@ export default function App() {
           },
         })}
         tabBarOptions={{
-          activeTintColor: 'green',
-          inactiveTintColor: 'gray',
+          activeTintColor: '#295240',
+          inactiveTintColor: '#295240',
+          showLabel: false,
+          style: {
+            position: 'absolute',
+            backgroundColor: 'rgba(255, 255, 255, 0.5)',
+          },
         }}
       >
         <Tab.Screen
@@ -66,6 +88,7 @@ export default function App() {
           )}
         />
       </Tab.Navigator>
+      <StatusBar />
     </NavigationContainer>
   );
 }

@@ -1,18 +1,24 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
+  container: {
+    paddingTop: 20,
+    height: '100%',
+    backgroundColor: '#fcd9c8',
+  },
   header: {
-    fontSize: 38,
+    fontSize: 55,
     fontWeight: 'bold',
+    fontFamily: 'BerkshireSwash_400Regular',
+    color: '#295240',
+    marginTop: 5,
+    marginBottom: 25,
     paddingHorizontal: 20,
   },
-  container: {
-    paddingVertical: 20,
+  header_container: {
+    justifyContent: 'center',
   },
-  list: {
-    marginTop: 20,
-    marginBottom: 70,
-  },
+
   notice: {
     fontSize: 20,
     fontWeight: 'bold',
