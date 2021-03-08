@@ -1,9 +1,15 @@
 import React from 'react';
-import { SafeAreaView, View, Text, FlatList } from 'react-native';
+import {
+  SafeAreaView,
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
 import PlantItem from '../../components/PlantItem/PlantItem';
 import styles from './MyPlants.style';
 
-export default function MyPlants({ userPlants, setUserPlants }) {
+export default function MyPlants({ userPlants, setUserPlants, navigation }) {
   return (
     <SafeAreaView>
       <View style={styles.container}>
@@ -16,7 +22,15 @@ export default function MyPlants({ userPlants, setUserPlants }) {
             data={userPlants}
             keyExtractor={(item) => item._id}
             renderItem={({ item }) => (
-              <PlantItem userPlant={item} setUserPlants={setUserPlants} />
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('PlantDetails', {
+                    userPlant: item,
+                  });
+                }}
+              >
+                <PlantItem userPlant={item} setUserPlants={setUserPlants} />
+              </TouchableOpacity>
             )}
           />
         ) : (

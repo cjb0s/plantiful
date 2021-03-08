@@ -1,10 +1,11 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-export default function PlantDetails() {
+export default function NestedScreen({ route }) {
+  console.log(route);
   return (
     <View>
-      <Text>Hello, world!</Text>
+      <Text>{route.params.userPlant.common_name}</Text>
     </View>
   );
 }

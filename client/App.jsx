@@ -15,9 +15,9 @@ import {
   Cantarell_700Bold_Italic,
 } from '@expo-google-fonts/cantarell';
 import ApiService from './services/ApiService';
-import MyPlants from './screens/MyPlants/MyPlants';
 import Home from './screens/Home/Home';
 import AddPlant from './screens/AddPlant/AddPlant';
+import GreenhouseStackNavigation from './screens/GreenhouseStackNavigation/GreenhouseStackNavigation';
 
 async function registerForPushNotificationsAsync() {
   let token;
@@ -156,7 +156,7 @@ export default function App() {
               iconName = focused ? 'ios-home' : 'ios-home-outline';
             } else if (route.name === 'Add Plant') {
               iconName = focused ? 'ios-add-circle' : 'ios-add-circle-outline';
-            } else if (route.name === 'My Plants') {
+            } else if (route.name === 'GreenhouseStackNavigation') {
               iconName = focused ? 'ios-leaf' : 'ios-leaf-outline';
             }
 
@@ -194,9 +194,9 @@ export default function App() {
           )}
         />
         <Tab.Screen
-          name="My Plants"
+          name="GreenhouseStackNavigation"
           children={(navigation) => (
-            <MyPlants
+            <GreenhouseStackNavigation
               {...navigation}
               userPlants={userPlants}
               setUserPlants={setUserPlants}
