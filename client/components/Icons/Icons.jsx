@@ -1,77 +1,77 @@
 import React from 'react';
 import { Image } from 'react-native';
-import styles from './Icons.style';
 
-export default function Icon({ plantName }) {
+export default function Icon({ plantName, plantStyle }) {
+  console.log(plantStyle);
   switch (plantName) {
     case 'Aloe Vera':
       return (
         <Image
           source={require('../../assets/images/AloeVera.jpeg')}
-          style={styles.image}
+          style={plantStyle}
         />
       );
     case 'Cactus':
       return (
         <Image
           source={require('../../assets/images/Cactus.jpeg')}
-          style={styles.image}
+          style={plantStyle}
         />
       );
     case 'Chinese Money Plant':
       return (
         <Image
           source={require('../../assets/images/ChineseMoneyPlant.jpeg')}
-          style={styles.image}
+          style={plantStyle}
         />
       );
     case 'Dragon Tree':
       return (
         <Image
           source={require('../../assets/images/DragonTree.jpeg')}
-          style={styles.image}
+          style={plantStyle}
         />
       );
     case 'Orchid':
       return (
         <Image
           source={require('../../assets/images/Orchid.jpeg')}
-          style={styles.image}
+          style={plantStyle}
         />
       );
     case 'Radiator Plant':
       return (
         <Image
           source={require('../../assets/images/RadiatorPlant.jpeg')}
-          style={styles.image}
+          style={plantStyle}
         />
       );
     case 'Spider Plant':
       return (
         <Image
           source={require('../../assets/images/SpiderPlant.jpeg')}
-          style={styles.image}
+          style={plantStyle}
         />
       );
     case 'String Of Pearls':
       return (
         <Image
           source={require('../../assets/images/StringOfPearls.jpeg')}
-          style={styles.image}
+          style={plantStyle}
         />
       );
     case 'Swiss Cheese Plant':
       return (
         <Image
           source={require('../../assets/images/SwissCheesePlant.jpeg')}
-          style={styles.image}
+          style={plantStyle}
         />
       );
     case 'Yucca':
       return (
         <Image
           source={require('../../assets/images/AloeVera.jpeg')}
-          style={styles.image}
+          style={plantStyle}
         />
       );
   }

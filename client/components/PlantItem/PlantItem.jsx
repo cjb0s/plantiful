@@ -99,7 +99,7 @@ export default function PlantItem({ userPlant, setUserPlants }) {
         </Text>
       </View>
       <View style={styles.middle}>
-        <Icon plantName={userPlant.common_name} plantStyles={styles.image} />
+        <Icon plantName={userPlant.common_name} plantStyle={styles.image} />
         <AnimatedCircularProgress
           size={120}
           width={3}
