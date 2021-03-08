@@ -78,9 +78,9 @@ export default function PlantForm({ setUserPlants }) {
   };
 
   const handleSubmit = () => {
-    if (!typeQuery) Alert.alert('Please enter a plant name 🪴');
+    if (!typeQuery) Alert.alert('Please enter a plant name');
     else if (!validateInput(typeQuery, plants))
-      Alert.alert('Please enter a valid plant name 🤔');
+      Alert.alert('Please enter a valid plant name');
     else {
       ApiService.findPlant(typeQuery).then((plant) => {
         delete plant['__v'];
@@ -92,7 +92,7 @@ export default function PlantForm({ setUserPlants }) {
         ApiService.postPlant(plant).then((res) =>
           setUserPlants((prevPlants) => [...prevPlants, res]),
         );
-        Alert.alert('Your new plant has been added 🎉');
+        Alert.alert('Your new plant has been added');
       });
       setTypeQuery('');
     }

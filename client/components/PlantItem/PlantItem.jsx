@@ -20,7 +20,7 @@ export default function PlantItem({ userPlant, setUserPlants }) {
       setRemainingDays(
         moment(updatedPlant.next_water).diff(moment(), 'days') + 1,
       );
-      Alert.alert(`Your ${userPlant.common_name} has been watered 🎉`);
+      Alert.alert(`Your ${userPlant.common_name} has been watered`);
       setUserPlants((plants) => {
         const index = plants.findIndex(
           (plant) => plant._id === updatedPlant._id,
@@ -37,7 +37,7 @@ export default function PlantItem({ userPlant, setUserPlants }) {
       setUserPlants((userPlants) =>
         userPlants.filter((plant) => plant._id !== userPlant._id),
       );
-      Alert.alert(`Your ${userPlant.common_name} has been removed... 🪦`);
+      Alert.alert(`Your ${userPlant.common_name} has been removed`);
     });
   };
 
@@ -45,8 +45,8 @@ export default function PlantItem({ userPlant, setUserPlants }) {
     if (remainingDays > 0) {
       const unit = remainingDays === 1 ? 'day' : 'days';
       Alert.alert(
-        `Careful not to overwater your ${userPlant.common_name}! It still has ${remainingDays} ${unit} left...`,
-        '😓',
+        `Careful not to overwater your ${userPlant.common_name}. It still has ${remainingDays} ${unit} left`,
+        '',
         [
           {
             text: 'Continue',
@@ -58,7 +58,7 @@ export default function PlantItem({ userPlant, setUserPlants }) {
         ],
       );
     } else {
-      Alert.alert(`Are you sure?`, '💦🪴', [
+      Alert.alert(`Are you sure?`, '', [
         {
           text: 'Continue',
           onPress: () => waterMe(),
@@ -73,7 +73,7 @@ export default function PlantItem({ userPlant, setUserPlants }) {
   const handleDelete = () => {
     Alert.alert(
       `Are you sure you want to delete your ${userPlant.common_name}?`,
-      '😱',
+      '',
       [
         {
           text: 'Continue',

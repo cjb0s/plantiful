@@ -17,7 +17,6 @@ exports.getPlants = async (req, res) => {
 exports.findPlant = async (req, res) => {
   try {
     const plant = await Plant.findOne({ common_name: req.params.name });
-    console.log(plant);
     res.status(200);
     res.send(plant);
   } catch (error) {

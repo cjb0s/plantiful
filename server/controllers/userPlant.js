@@ -32,7 +32,6 @@ exports.updateNextWater = async (req, res) => {
     const userPlant = await UserPlant.findByIdAndUpdate(id, req.body, {
       new: true,
     });
-    console.log(userPlant);
     res.send(userPlant);
   } catch (error) {
     console.error('UPDATE USER PLANT:', error); // eslint-disable-line no-console
