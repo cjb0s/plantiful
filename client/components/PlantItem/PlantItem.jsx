@@ -90,7 +90,9 @@ export default function PlantItem({ userPlant, setUserPlants }) {
   return (
     <View style={styles.card}>
       <View style={styles.top}>
-        <Text style={styles.header}>{userPlant.name.toLowerCase()}</Text>
+        <View style={styles.header_container}>
+          <Text style={styles.header}>{userPlant.name.toUpperCase()}</Text>
+        </View>
         <Text style={styles.subheader}>
           {userPlant.scientific_name.toLowerCase()}
         </Text>
@@ -102,7 +104,7 @@ export default function PlantItem({ userPlant, setUserPlants }) {
         />
         <AnimatedCircularProgress
           size={120}
-          width={4}
+          width={3}
           backgroundWidth={0}
           fill={(remainingDays / userPlant.water_days) * 100}
           tintColor="#fcd9c8"
@@ -113,7 +115,7 @@ export default function PlantItem({ userPlant, setUserPlants }) {
           {(fill) => (
             <View style={styles.timer_container}>
               {remainingDays <= 0 ? (
-                <Entypo name="water" size={50} color="#fcd9c8" />
+                <Entypo name="water" size={60} color="#fcd9c8" />
               ) : (
                 <Text style={styles.timer}>{remainingDays}</Text>
               )}

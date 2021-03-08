@@ -3,24 +3,20 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   label: {
     fontSize: 20,
-    fontWeight: 'bold',
     color: '#295240',
-    marginBottom: 20,
-    fontFamily: 'Cantarell_700Bold_Italic',
+    fontFamily: 'FanwoodText_400Regular',
+    marginTop: 30,
   },
   input: {
-    backgroundColor: '#eec1ae',
+    fontSize: 20,
+    fontFamily: 'FanwoodText_400Regular',
     color: '#295240',
-    fontFamily: 'Cantarell_700Bold',
-    borderRadius: 15,
-    marginBottom: 30,
     padding: 10,
+    borderBottomColor: '#295240',
+    borderBottomWidth: 1,
   },
   input_name: {
-    fontSize: 16,
-  },
-  input_date: {
-    marginBottom: 30,
+    marginTop: 30,
   },
   suggestion: {
     borderBottomWidth: 1,
@@ -28,34 +24,30 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 30,
   },
   suggestion_commonName: {
+    fontSize: 20,
+    fontFamily: 'FanwoodText_400Regular',
+    color: '#295240',
     paddingLeft: 15,
     marginTop: 15,
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#295240',
   },
   suggestion_scientificName: {
+    fontSize: 18,
+    fontFamily: 'FanwoodText_400Regular',
+    color: '#295240',
     paddingLeft: 15,
     paddingBottom: 15,
-    fontSize: 16,
-    fontStyle: 'italic',
-    color: '#295240',
   },
   suggestion_image: {
     height: 45,
     width: 45,
     borderRadius: 30,
   },
-  // dateContainer: {
-  //   borderRadius: 100,
-  // },
   placeholder_date: {
+    fontFamily: 'FanwoodText_400Regular',
+    fontSize: 20,
     color: '#295240',
-    fontFamily: 'Cantarell_700Bold',
-    fontSize: 16,
   },
   overlay: {
     width: '100%',
@@ -72,16 +64,10 @@ export default StyleSheet.create({
     flexDirection: 'row',
   },
   overlay_cancel: {
-    paddingHorizontal: 15,
-    color: 'red',
-    fontSize: 16,
-    fontFamily: 'Cantarell_700Bold',
+    marginLeft: 15,
   },
   overlay_done: {
-    paddingHorizontal: 15,
-    color: '#295240',
-    fontSize: 16,
-    fontFamily: 'Cantarell_700Bold',
+    marginRight: 15,
   },
   dateTimePicker: {
     backgroundColor: '#fcd9c8',
@@ -89,5 +75,6 @@ export default StyleSheet.create({
   button: {
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 30,
   },
 });

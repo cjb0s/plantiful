@@ -27,7 +27,7 @@ export default function Home({ userPlants }) {
     <SafeAreaView>
       <View style={styles.container}>
         <View style={styles.header_container}>
-          <Text style={styles.header}>today</Text>
+          <Text style={styles.header}>TODAY</Text>
           {renderNotice()}
         </View>
         <View style={styles.image_container}>
@@ -37,7 +37,9 @@ export default function Home({ userPlants }) {
           />
         </View>
         <View style={styles.topTip}>
-          <Text style={styles.topTip_header}>plantifact</Text>
+          <View style={styles.topTip_container}>
+            <Text style={styles.topTip_header}>PLANTIFACT</Text>
+          </View>
           <Text style={styles.topTip_text}>
             most plants prefer for their soil to dry out before rewatering
           </Text>

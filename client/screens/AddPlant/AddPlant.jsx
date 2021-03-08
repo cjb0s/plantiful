@@ -7,7 +7,7 @@ export default function Home(props) {
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        <Text style={styles.header}>add plant</Text>
+        <Text style={styles.header}>ADD PLANT</Text>
         <PlantForm {...props} />
         <View style={styles.image_container}>
           <Image

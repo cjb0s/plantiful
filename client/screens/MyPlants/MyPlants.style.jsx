@@ -8,8 +8,7 @@ export default StyleSheet.create({
   },
   header: {
     fontSize: 55,
-    fontWeight: 'bold',
-    fontFamily: 'BerkshireSwash_400Regular',
+    fontFamily: 'Quattrocento_700Bold',
     color: '#295240',
     marginTop: 5,
     marginBottom: 25,
@@ -20,8 +19,8 @@ export default StyleSheet.create({
   },
 
   notice: {
-    fontSize: 30,
-    fontFamily: 'Akaya-Telivigala',
+    fontSize: 25,
+    fontFamily: 'Quattrocento_700Bold',
     color: '#295240',
     paddingHorizontal: 20,
   },

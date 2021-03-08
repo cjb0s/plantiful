@@ -8,8 +8,7 @@ export default StyleSheet.create({
   },
   header: {
     fontSize: 55,
-    fontWeight: 'bold',
-    fontFamily: 'BerkshireSwash_400Regular',
+    fontFamily: 'Quattrocento_700Bold',
     color: '#295240',
     marginTop: 5,
     marginBottom: 25,
@@ -19,8 +18,8 @@ export default StyleSheet.create({
     width: '100%',
   },
   image: {
-    height: 120,
-    width: 120,
+    height: 200,
+    width: 200,
     alignItems: 'center',
   },
 });

@@ -14,7 +14,7 @@ export default function MyPlants({ userPlants, setUserPlants, navigation }) {
     <SafeAreaView>
       <View style={styles.container}>
         <View style={styles.header_container}>
-          <Text style={styles.header}>my plants</Text>
+          <Text style={styles.header}>MY PLANTS</Text>
         </View>
         {userPlants.length ? (
           <FlatList
@@ -23,6 +23,7 @@ export default function MyPlants({ userPlants, setUserPlants, navigation }) {
             keyExtractor={(item) => item._id}
             renderItem={({ item }) => (
               <TouchableOpacity
+                activeOpacity={0.9}
                 onPress={() => {
                   navigation.navigate('PlantDetails', {
                     userPlant: item,

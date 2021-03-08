@@ -8,8 +8,8 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "@expo-google-fonts/berkshire-swash": "^0.1.0",
-    "@expo-google-fonts/cantarell": "^0.1.0",
+    "@expo-google-fonts/fanwood-text": "^0.1.0",
+    "@expo-google-fonts/quattrocento": "^0.1.0",
     "@react-native-community/datetimepicker": "3.0.4",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/bottom-tabs": "^5.11.8",

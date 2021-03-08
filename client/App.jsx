@@ -9,11 +9,11 @@ import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
-import { BerkshireSwash_400Regular } from '@expo-google-fonts/berkshire-swash';
+import { Quattrocento_700Bold } from '@expo-google-fonts/quattrocento';
 import {
-  Cantarell_700Bold,
-  Cantarell_700Bold_Italic,
-} from '@expo-google-fonts/cantarell';
+  FanwoodText_400Regular,
+  FanwoodText_400Regular_Italic,
+} from '@expo-google-fonts/fanwood-text';
 import ApiService from './services/ApiService';
 import Home from './screens/Home/Home';
 import AddPlant from './screens/AddPlant/AddPlant';
@@ -75,14 +75,6 @@ export default function App() {
     ApiService.getUserPlants().then((userPlants) => setUserPlants(userPlants));
   }, []);
 
-  let [fontsLoaded] = useFonts({
-    BerkshireSwash_400Regular,
-    'Akaya-Telivigala': require('./assets/fonts/Akaya_Telivigala/AkayaTelivigala-Regular.ttf'),
-    'Akaya-Kanadaka': require('./assets/fonts/Akaya_Kanadaka/AkayaKanadaka-Regular.ttf'),
-    Cantarell_700Bold,
-    Cantarell_700Bold_Italic,
-  });
-
   useEffect(() => {
     registerForPushNotificationsAsync().then((token) =>
       setExpoPushToken(token),
@@ -142,6 +134,11 @@ export default function App() {
     });
     return filtered.length;
   };
+
+  let [fontsLoaded] = useFonts({
+    FanwoodText_400Regular,
+    Quattrocento_700Bold,
+  });
 
   if (!fontsLoaded) return <AppLoading />;
 

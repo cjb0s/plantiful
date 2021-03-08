@@ -9,15 +9,14 @@ export default StyleSheet.create({
   },
   header: {
     fontSize: 55,
-    fontWeight: 'bold',
-    fontFamily: 'BerkshireSwash_400Regular',
+    fontFamily: 'Quattrocento_700Bold',
     color: '#295240',
     marginTop: 5,
     marginBottom: 25,
   },
   notice: {
-    fontSize: 30,
-    fontFamily: 'Akaya-Telivigala',
+    fontSize: 25,
+    fontFamily: 'Quattrocento_700Bold',
     color: '#295240',
   },
   image_container: {
@@ -31,21 +30,25 @@ export default StyleSheet.create({
   },
   topTip: {
     borderRadius: 15,
-    backgroundColor: '#eec1ae',
     padding: 13,
     marginBottom: 40,
     width: '100%',
   },
+  topTip_container: {
+    borderBottomColor: '#295240',
+    borderBottomWidth: 1,
+  },
   topTip_header: {
     fontSize: 23,
-    fontWeight: 'bold',
-    fontFamily: 'Cantarell_700Bold_Italic',
+    fontFamily: 'FanwoodText_400Regular',
     color: '#295240',
-    marginBottom: 10,
+    width: '100%',
+    marginBottom: 5,
   },
   topTip_text: {
     fontSize: 16,
-    fontFamily: 'Cantarell_700Bold',
+    fontFamily: 'FanwoodText_400Regular',
     color: '#295240',
+    marginTop: 5,
   },
 });

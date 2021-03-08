@@ -11,6 +11,7 @@ import {
 import { Overlay } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Ionicons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 import moment from 'moment';
 import styles from './PlantForm.style';
 import ApiService from '../../services/ApiService';
@@ -110,10 +111,10 @@ export default function PlantForm({ setUserPlants }) {
   return (
     <View>
       <TextInput
-        style={[styles.input, styles.input_name]}
+        style={styles.input}
         value={typeQuery}
         onChangeText={setTypeQuery}
-        placeholder="plant name"
+        placeholder="plant type"
         placeholderTextColor="#295240"
         onFocus={() => {
           setIsFocused(true);
@@ -122,6 +123,7 @@ export default function PlantForm({ setUserPlants }) {
       />
       {typeQuery.length && isFocused ? (
         <FlatList
+          style={styles.list}
           data={sortList(filtered, 'common_name')}
           keyExtractor={(item) => item._id}
           extraData={typeQuery}
@@ -132,7 +134,7 @@ export default function PlantForm({ setUserPlants }) {
             >
               <View>
                 <Text style={styles.suggestion_commonName}>
-                  {item.common_name}
+                  {item.common_name.toUpperCase()}
                 </Text>
                 <Text style={styles.suggestion_scientificName}>
                   {item.scientific_name}
@@ -150,16 +152,13 @@ export default function PlantForm({ setUserPlants }) {
         style={[styles.input, styles.input_name]}
         value={nameQuery}
         onChangeText={setNameQuery}
-        placeholder="plant nickname"
+        placeholder="nickname"
         placeholderTextColor="#295240"
         clearButtonMode="always"
       />
-      <Text style={styles.label}>when did you last water me?</Text>
+      <Text style={styles.label}>WHEN WAS I LAST WATERED?</Text>
       <View style={styles.dateContainer}>
-        <TouchableOpacity
-          onPress={showOverlay}
-          style={[styles.input, styles.input_date]}
-        >
+        <TouchableOpacity onPress={showOverlay} style={styles.input}>
           <Text style={styles.placeholder_date}>{dateString}</Text>
         </TouchableOpacity>
         <Overlay
@@ -170,10 +169,20 @@ export default function PlantForm({ setUserPlants }) {
           <View>
             <View style={styles.overlay_header}>
               <TouchableOpacity onPress={hideOverlay}>
-                <Text style={styles.overlay_cancel}>Cancel</Text>
+                <AntDesign
+                  style={styles.overlay_cancel}
+                  name="closecircleo"
+                  size={24}
+                  color="red"
+                />
               </TouchableOpacity>
               <TouchableOpacity onPress={hideOverlay}>
-                <Text style={styles.overlay_done}>Done</Text>
+                <AntDesign
+                  style={styles.overlay_done}
+                  name="checkcircleo"
+                  size={24}
+                  color="#295240"
+                />
               </TouchableOpacity>
             </View>
             <DateTimePicker
