@@ -64,6 +64,8 @@ const Tab = createBottomTabNavigator();
 
 export default function App() {
   const [userPlants, setUserPlants] = useState([]);
+  const [needsWatering, setNeedsWatering] = useState(0);
+  const [notify, setNotify] = useState(false);
   const [expoPushToken, setExpoPushToken] = useState('');
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
@@ -109,16 +111,28 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (checkSchedule(userPlants)) {
+    const newNeedsWatering = checkSchedule(userPlants);
+    if (newNeedsWatering > needsWatering) {
+      setNeedsWatering(newNeedsWatering);
+      setNotify(true);
+    } else {
+      setNeedsWatering(newNeedsWatering);
+      setNotify(false);
+    }
+  }, [userPlants]);
+
+  useEffect(() => {
+    if (notify) {
       Notifications.scheduleNotificationAsync({
         content: {
-          title: 'Time to check on your plants',
+          title: 'Time to water your plants',
           body: 'Plants need love too',
         },
         trigger: null,
       });
+      setNotify(false);
     }
-  }, [userPlants]);
+  }, [notify]);
 
   const checkSchedule = (plants) => {
     const filtered = plants.filter((plant) => {
