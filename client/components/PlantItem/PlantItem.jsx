@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { View, Image, Text, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import moment from 'moment';
+import Icon from '../Icons/Icons';
 import styles from './PlantItem.style';
 import ApiService from '../../services/ApiService';
 
@@ -98,10 +99,7 @@ export default function PlantItem({ userPlant, setUserPlants }) {
         </Text>
       </View>
       <View style={styles.middle}>
-        <Image
-          source={require('../../assets/images/AloeVera.jpeg')}
-          style={styles.image}
-        />
+        <Icon plantName={userPlant.common_name} plantStyles={styles.image} />
         <AnimatedCircularProgress
           size={120}
           width={3}
