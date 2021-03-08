@@ -18,6 +18,7 @@ import ApiService from '../../services/ApiService';
 export default function PlantForm({ setUserPlants }) {
   const [plants, setPlants] = useState([]);
   const [typeQuery, setTypeQuery] = useState('');
+  const [nameQuery, setNameQuery] = useState('');
   const [filtered, setFiltered] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
   const [dateString, setDateString] = useState(
@@ -78,9 +79,15 @@ export default function PlantForm({ setUserPlants }) {
   };
 
   const handleSubmit = () => {
+    const chosenDate = moment(dateString, 'Do MMM YYYY').format();
+    const today = moment();
     if (!typeQuery) Alert.alert('Please enter a plant name');
     else if (!validateInput(typeQuery, plants))
       Alert.alert('Please enter a valid plant name');
+    else if (!nameQuery)
+      Alert.alert('Give your plant a name. Plants are people too.');
+    else if (moment(chosenDate).isAfter(today))
+      Alert.alert('Please enter a present or past date');
     else {
       ApiService.findPlant(typeQuery).then((plant) => {
         delete plant['__v'];
@@ -95,6 +102,7 @@ export default function PlantForm({ setUserPlants }) {
         Alert.alert('Your new plant has been added');
       });
       setTypeQuery('');
+      setNameQuery('');
     }
   };
 
@@ -139,13 +147,10 @@ export default function PlantForm({ setUserPlants }) {
       ) : null}
       <TextInput
         style={[styles.input, styles.input_name]}
-        value={typeQuery}
-        onChangeText={setTypeQuery}
+        value={nameQuery}
+        onChangeText={setNameQuery}
         placeholder="plant nickname"
         placeholderTextColor="#295240"
-        onFocus={() => {
-          setIsFocused(true);
-        }}
         clearButtonMode="always"
       />
       <Text style={styles.label}>when did you last water me?</Text>
