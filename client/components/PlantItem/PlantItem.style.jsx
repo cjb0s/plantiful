@@ -50,13 +50,14 @@ export default StyleSheet.create({
   timer_container: {
     height: '100%',
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
   },
   timer: {
     textAlign: 'center',
     fontSize: 80,
     fontFamily: 'Akaya-Kanadaka',
     color: '#fcd9c8',
+    marginBottom: 10,
   },
   waterMe: {
     borderRadius: 50,

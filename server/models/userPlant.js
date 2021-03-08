@@ -3,6 +3,7 @@
 const { Schema, model } = require('mongoose');
 
 const UserPlantSchema = new Schema({
+  name: { type: String, required: true },
   common_name: { type: String, required: true },
   scientific_name: { type: String, required: true },
   origin: { type: String, required: true },

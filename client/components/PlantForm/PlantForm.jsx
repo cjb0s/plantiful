@@ -92,6 +92,7 @@ export default function PlantForm({ setUserPlants }) {
       ApiService.findPlant(typeQuery).then((plant) => {
         delete plant['__v'];
         delete plant['_id'];
+        plant.name = nameQuery;
         plant.next_water = moment(dateString, 'Do MMM YYYY').add(
           plant.water_days,
           'd',

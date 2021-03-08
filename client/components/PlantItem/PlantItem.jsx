@@ -3,6 +3,7 @@ import { View, Image, Text, TouchableOpacity, Alert } from 'react-native';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
 import moment from 'moment';
 import styles from './PlantItem.style';
 import ApiService from '../../services/ApiService';
@@ -20,7 +21,6 @@ export default function PlantItem({ userPlant, setUserPlants }) {
       setRemainingDays(
         moment(updatedPlant.next_water).diff(moment(), 'days') + 1,
       );
-      Alert.alert(`Your ${userPlant.common_name} has been watered`);
       setUserPlants((plants) => {
         const index = plants.findIndex(
           (plant) => plant._id === updatedPlant._id,
@@ -37,15 +37,16 @@ export default function PlantItem({ userPlant, setUserPlants }) {
       setUserPlants((userPlants) =>
         userPlants.filter((plant) => plant._id !== userPlant._id),
       );
-      Alert.alert(`Your ${userPlant.common_name} has been removed`);
+      Alert.alert(`${userPlant.name} has been removed`);
     });
   };
 
   const handleWaterMe = () => {
     if (remainingDays > 0) {
       const unit = remainingDays === 1 ? 'day' : 'days';
+      const verb = remainingDays === 1 ? 'is' : 'are';
       Alert.alert(
-        `Careful not to overwater your ${userPlant.common_name}. It still has ${remainingDays} ${unit} left`,
+        `Careful not to overwater ${userPlant.name}. There ${verb} still ${remainingDays} ${unit} left.`,
         '',
         [
           {
@@ -72,7 +73,7 @@ export default function PlantItem({ userPlant, setUserPlants }) {
 
   const handleDelete = () => {
     Alert.alert(
-      `Are you sure you want to delete your ${userPlant.common_name}?`,
+      `Are you sure you want to delete ${userPlant.name} the ${userPlant.common_name}?`,
       '',
       [
         {
@@ -89,7 +90,7 @@ export default function PlantItem({ userPlant, setUserPlants }) {
   return (
     <View style={styles.card}>
       <View style={styles.top}>
-        <Text style={styles.header}>{userPlant.common_name.toLowerCase()}</Text>
+        <Text style={styles.header}>{userPlant.name.toLowerCase()}</Text>
         <Text style={styles.subheader}>
           {userPlant.scientific_name.toLowerCase()}
         </Text>
@@ -111,7 +112,11 @@ export default function PlantItem({ userPlant, setUserPlants }) {
         >
           {(fill) => (
             <View style={styles.timer_container}>
-              <Text style={styles.timer}>{remainingDays}</Text>
+              {remainingDays <= 0 ? (
+                <Entypo name="water" size={50} color="#fcd9c8" />
+              ) : (
+                <Text style={styles.timer}>{remainingDays}</Text>
+              )}
             </View>
           )}
         </AnimatedCircularProgress>
