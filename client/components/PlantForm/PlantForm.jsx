@@ -13,6 +13,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import moment from 'moment';
+import Icon from '../Icons/Icons';
 import styles from './PlantForm.style';
 import ApiService from '../../services/ApiService';
 
@@ -140,9 +141,9 @@ export default function PlantForm({ setUserPlants }) {
                   {item.scientific_name}
                 </Text>
               </View>
-              <Image
-                source={require('../../assets/images/AloeVera.jpeg')}
-                style={styles.suggestion_image}
+              <Icon
+                plantName={item.common_name}
+                plantStyle={styles.suggestion_image}
               />
             </TouchableOpacity>
           )}
