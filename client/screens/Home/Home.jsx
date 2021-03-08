@@ -5,11 +5,11 @@ import styles from './Home.style';
 
 export default function Home({ userPlants }) {
   const checkSchedule = (plants) => {
-    const filtered = plants.filter(
-      (plant) =>
-        moment(plant.next_water).add(1, 'days').format('Do MMM YYYY') <=
-        moment().format('Do MMM YYYY'),
-    );
+    const filtered = plants.filter((plant) => {
+      const nextWater = moment(plant.next_water).add(1, 'days').toISOString();
+      const today = moment().toISOString();
+      return moment(nextWater).isSameOrBefore(today);
+    });
     return filtered.length;
   };
 
