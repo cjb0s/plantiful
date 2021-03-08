@@ -1,6 +1,10 @@
+import Constants from 'expo-constants';
+import * as Notifications from 'expo-notifications';
 import React, { useState, useEffect, useRef } from 'react';
+import { Platform } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import moment from 'moment';
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import AppLoading from 'expo-app-loading';
@@ -15,10 +19,56 @@ import MyPlants from './screens/MyPlants/MyPlants';
 import Home from './screens/Home/Home';
 import AddPlant from './screens/AddPlant/AddPlant';
 
+async function registerForPushNotificationsAsync() {
+  let token;
+  if (Constants.isDevice) {
+    const {
+      status: existingStatus,
+    } = await Notifications.getPermissionsAsync();
+    let finalStatus = existingStatus;
+    if (existingStatus !== 'granted') {
+      const { status } = await Notifications.requestPermissionsAsync();
+      finalStatus = status;
+    }
+    if (finalStatus !== 'granted') {
+      alert('Failed to get push token for push notification!');
+      return;
+    }
+    token = (await Notifications.getExpoPushTokenAsync()).data;
+    // console.log(token);
+  } else {
+    alert('Must use physical device for Push Notifications');
+  }
+
+  if (Platform.OS === 'android') {
+    Notifications.setNotificationChannelAsync('default', {
+      name: 'default',
+      importance: Notifications.AndroidImportance.MAX,
+      vibrationPattern: [0, 250, 250, 250],
+      lightColor: '#FF231F7C',
+    });
+  }
+
+  return token;
+}
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
+
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   const [userPlants, setUserPlants] = useState([]);
+  const [expoPushToken, setExpoPushToken] = useState('');
+  const [notification, setNotification] = useState(false);
+  const notificationListener = useRef();
+  const responseListener = useRef();
+
   useEffect(() => {
     ApiService.getUserPlants().then((userPlants) => setUserPlants(userPlants));
   }, []);
@@ -30,6 +80,54 @@ export default function App() {
     Cantarell_700Bold,
     Cantarell_700Bold_Italic,
   });
+
+  useEffect(() => {
+    registerForPushNotificationsAsync().then((token) =>
+      setExpoPushToken(token),
+    );
+
+    // This listener is fired whenever a notification is received while the app is foregrounded
+    notificationListener.current = Notifications.addNotificationReceivedListener(
+      (notification) => {
+        setNotification(notification);
+      },
+    );
+
+    // This listener is fired whenever a user taps on or interacts with a notification (works when app is foregrounded, backgrounded, or killed)
+    responseListener.current = Notifications.addNotificationResponseReceivedListener(
+      (response) => {
+        console.log(response);
+      },
+    );
+
+    return () => {
+      Notifications.removeNotificationSubscription(
+        notificationListener.current,
+      );
+      Notifications.removeNotificationSubscription(responseListener.current);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (checkSchedule(userPlants)) {
+      Notifications.scheduleNotificationAsync({
+        content: {
+          title: 'Time to check on your plants',
+          body: 'Plants need love too',
+        },
+        trigger: null,
+      });
+    }
+  }, [userPlants]);
+
+  const checkSchedule = (plants) => {
+    const filtered = plants.filter((plant) => {
+      const nextWater = moment(plant.next_water).add(1, 'days').toISOString();
+      const today = moment().toISOString();
+      return moment(nextWater).isSameOrBefore(today);
+    });
+    return filtered.length;
+  };
 
   if (!fontsLoaded) return <AppLoading />;
 
@@ -64,7 +162,11 @@ export default function App() {
         <Tab.Screen
           name="Home"
           children={(navigation) => (
-            <Home {...navigation} userPlants={userPlants} />
+            <Home
+              {...navigation}
+              userPlants={userPlants}
+              checkSchedule={checkSchedule}
+            />
           )}
         />
         <Tab.Screen

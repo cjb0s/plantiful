@@ -17,7 +17,7 @@ import ApiService from '../../services/ApiService';
 
 export default function PlantForm({ setUserPlants }) {
   const [plants, setPlants] = useState([]);
-  const [query, setQuery] = useState('');
+  const [typeQuery, setTypeQuery] = useState('');
   const [filtered, setFiltered] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
   const [dateString, setDateString] = useState(
@@ -34,9 +34,9 @@ export default function PlantForm({ setUserPlants }) {
   }, []);
 
   useEffect(() => {
-    if (!query) setFiltered(plants);
+    if (!typeQuery) setFiltered(plants);
     else {
-      let search = query.toLowerCase();
+      let search = typeQuery.toLowerCase();
       const newFiltered = plants.filter(
         (plant) =>
           plant.common_name.toLowerCase().startsWith(search) ||
@@ -44,10 +44,10 @@ export default function PlantForm({ setUserPlants }) {
       );
       setFiltered(newFiltered);
     }
-  }, [query]);
+  }, [typeQuery]);
 
-  const validateInput = (query, plants) => {
-    const filtered = plants.filter((plant) => plant.common_name === query);
+  const validateInput = (typeQuery, plants) => {
+    const filtered = plants.filter((plant) => plant.common_name === typeQuery);
     return filtered.length;
   };
 
@@ -68,7 +68,7 @@ export default function PlantForm({ setUserPlants }) {
   };
 
   const handleSuggestionPress = (item) => {
-    setQuery(item.common_name);
+    setTypeQuery(item.common_name);
     setIsFocused(false);
   };
 
@@ -78,11 +78,11 @@ export default function PlantForm({ setUserPlants }) {
   };
 
   const handleSubmit = () => {
-    if (!query) Alert.alert('Please enter a plant name 🪴');
-    else if (!validateInput(query, plants))
+    if (!typeQuery) Alert.alert('Please enter a plant name 🪴');
+    else if (!validateInput(typeQuery, plants))
       Alert.alert('Please enter a valid plant name 🤔');
     else {
-      ApiService.findPlant(query).then((plant) => {
+      ApiService.findPlant(typeQuery).then((plant) => {
         delete plant['__v'];
         delete plant['_id'];
         plant.next_water = moment(dateString, 'Do MMM YYYY').add(
@@ -94,7 +94,7 @@ export default function PlantForm({ setUserPlants }) {
         );
         Alert.alert('Your new plant has been added 🎉');
       });
-      setQuery('');
+      setTypeQuery('');
     }
   };
 
@@ -102,8 +102,8 @@ export default function PlantForm({ setUserPlants }) {
     <View>
       <TextInput
         style={[styles.input, styles.input_name]}
-        value={query}
-        onChangeText={setQuery}
+        value={typeQuery}
+        onChangeText={setTypeQuery}
         placeholder="plant name"
         placeholderTextColor="#295240"
         onFocus={() => {
@@ -111,11 +111,11 @@ export default function PlantForm({ setUserPlants }) {
         }}
         clearButtonMode="always"
       />
-      {query.length && isFocused ? (
+      {typeQuery.length && isFocused ? (
         <FlatList
           data={sortList(filtered, 'common_name')}
           keyExtractor={(item) => item._id}
-          extraData={query}
+          extraData={typeQuery}
           renderItem={({ item }) => (
             <TouchableOpacity
               style={styles.suggestion}
@@ -139,8 +139,8 @@ export default function PlantForm({ setUserPlants }) {
       ) : null}
       <TextInput
         style={[styles.input, styles.input_name]}
-        value={query}
-        onChangeText={setQuery}
+        value={typeQuery}
+        onChangeText={setTypeQuery}
         placeholder="plant nickname"
         placeholderTextColor="#295240"
         onFocus={() => {

@@ -14,7 +14,7 @@ export default function Home({ userPlants }) {
   };
 
   const renderNotice = () => {
-    if (!userPlants.length) {
+    if (!userPlants?.length) {
       return <Text style={styles.notice}>you don't have any plants</Text>;
     } else if (checkSchedule(userPlants)) {
       return <Text style={styles.notice}>your plants need some love</Text>;
