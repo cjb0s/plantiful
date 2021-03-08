@@ -7,7 +7,7 @@ export default function Home({ userPlants }) {
   const checkSchedule = (plants) => {
     const filtered = plants.filter(
       (plant) =>
-        moment(plant.next_water).add(1, 'days').format('Do MMM YYYY') ===
+        moment(plant.next_water).add(1, 'days').format('Do MMM YYYY') <=
         moment().format('Do MMM YYYY'),
     );
     return filtered.length;

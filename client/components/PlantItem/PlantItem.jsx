@@ -27,11 +27,11 @@ Notifications.setNotificationHandler({
 Notifications.scheduleNotificationAsync({
   content: {
     title: 'Time to check on your plants',
-    body: 'Plants need love too!',
+    body: 'Plants need love too',
   },
   trigger: {
-    hour: 9,
-    minute: 0,
+    hour: 8,
+    minute: 31,
     repeats: true,
   },
 });
