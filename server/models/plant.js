@@ -16,8 +16,8 @@ const PlantSchema = new Schema({
     },
     required: true,
   },
-  feed_weeks: { type: Number, required: true },
-  repot_years: { type: Number, required: true },
+  feed: { type: String, required: true },
+  repot: { type: String, required: true },
   pets: { type: String, required: true },
   difficulty: { type: Number, required: true },
   common_problems: {

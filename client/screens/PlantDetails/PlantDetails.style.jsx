@@ -27,7 +27,7 @@ export default StyleSheet.create({
     justifyContent: 'space-around',
   },
   middle_bottom: {
-    height: '35%',
+    height: '30%',
     width: '100%',
     justifyContent: 'space-evenly',
   },
@@ -66,6 +66,7 @@ export default StyleSheet.create({
     fontSize: 16,
     fontFamily: 'FanwoodText_400Regular',
     color: '#fcd9c8',
+    marginTop: 5,
   },
   icon: {
     alignItems: 'center',
@@ -73,8 +74,8 @@ export default StyleSheet.create({
     borderRadius: 40,
     borderColor: '#fcd9c8',
     borderWidth: 2,
-    height: 40,
-    width: 40,
+    height: 35,
+    width: 35,
     marginLeft: 15,
   },
   icon_small: {
@@ -83,8 +84,8 @@ export default StyleSheet.create({
     borderRadius: 40,
     borderColor: '#fcd9c8',
     borderWidth: 2,
-    height: 35,
-    width: 35,
+    height: 30,
+    width: 30,
   },
   icon_number: {
     fontSize: 20,

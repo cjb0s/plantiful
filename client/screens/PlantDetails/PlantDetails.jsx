@@ -36,7 +36,7 @@ export default function NestedScreen({ route }) {
               <View style={styles.difficulty_container}>
                 <Progress.Bar
                   progress={difficulty}
-                  width={120}
+                  width={115}
                   color="#fcd9c8"
                 />
                 <Text style={styles.difficulty_text}>difficulty</Text>
@@ -45,7 +45,7 @@ export default function NestedScreen({ route }) {
                 <View style={styles.icon}>
                   <MaterialCommunityIcons
                     name="watering-can-outline"
-                    size={30}
+                    size={25}
                     color="#fcd9c8"
                   />
                 </View>
@@ -53,7 +53,7 @@ export default function NestedScreen({ route }) {
                   {route.params.userPlant.water_days}
                 </Text>
                 <View style={[styles.icon, styles.thermometer]}>
-                  <Fontisto name="thermometer-alt" size={25} color="#fcd9c8" />
+                  <Fontisto name="thermometer-alt" size={20} color="#fcd9c8" />
                 </View>
                 <View style={styles.temperature_text}>
                   <Text style={styles.icon_number}>
@@ -69,39 +69,39 @@ export default function NestedScreen({ route }) {
           <View style={styles.middle_bottom}>
             <View style={styles.info}>
               <View style={styles.icon_small}>
-                <Feather name="sun" size={25} color="#fcd9c8" />
+                <Feather name="sun" size={20} color="#fcd9c8" />
               </View>
               <Text style={styles.info_text}>
-                {route.params.userPlant.origin.toLowerCase()}
+                {route.params.userPlant.light.toLowerCase()}
               </Text>
             </View>
             <View style={styles.info}>
               <View style={styles.icon_small}>
                 <MaterialCommunityIcons
                   name="baby-bottle-outline"
-                  size={25}
+                  size={20}
                   color="#fcd9c8"
                 />
               </View>
               <Text style={styles.info_text}>
-                {route.params.userPlant.origin.toLowerCase()}
+                {route.params.userPlant.feed.toLowerCase()}
               </Text>
             </View>
             <View style={styles.info}>
               <View style={styles.icon_small}>
                 <MaterialCommunityIcons
                   name="pot-outline"
-                  size={25}
+                  size={20}
                   color="#fcd9c8"
                 />
               </View>
               <Text style={styles.info_text}>
-                {route.params.userPlant.origin.toLowerCase()}
+                {route.params.userPlant.repot.toLowerCase()}
               </Text>
             </View>
             <View style={styles.info}>
               <View style={styles.icon_small}>
-                <Ionicons name="earth" size={25} color="#fcd9c8" />
+                <Ionicons name="earth" size={20} color="#fcd9c8" />
               </View>
               <Text style={styles.info_text}>
                 {route.params.userPlant.origin.toLowerCase()}
