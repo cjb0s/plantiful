@@ -69,7 +69,7 @@ export default StyleSheet.create({
     borderColor: '#fcd9c8',
     borderWidth: 2,
     padding: 5,
-    marginRight: 107,
+    marginRight: 103,
   },
   delete: {
     justifyContent: 'center',
