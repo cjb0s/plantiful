@@ -10,10 +10,7 @@ import { StatusBar } from 'expo-status-bar';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import { Quattrocento_700Bold } from '@expo-google-fonts/quattrocento';
-import {
-  FanwoodText_400Regular,
-  FanwoodText_400Regular_Italic,
-} from '@expo-google-fonts/fanwood-text';
+import { FanwoodText_400Regular } from '@expo-google-fonts/fanwood-text';
 import ApiService from './services/ApiService';
 import Home from './screens/Home/Home';
 import AddPlant from './screens/AddPlant/AddPlant';
@@ -90,7 +87,7 @@ export default function App() {
     // This listener is fired whenever a user taps on or interacts with a notification (works when app is foregrounded, backgrounded, or killed)
     responseListener.current = Notifications.addNotificationResponseReceivedListener(
       (response) => {
-        console.log(response);
+        // console.log(response);
       },
     );
 
