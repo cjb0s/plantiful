@@ -100,4 +100,14 @@ export default StyleSheet.create({
   thermometer: {
     marginLeft: 20,
   },
+  info: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  info_text: {
+    fontSize: 20,
+    fontFamily: 'FanwoodText_400Regular',
+    color: '#fcd9c8',
+    marginLeft: 15,
+  },
 });

@@ -71,6 +71,9 @@ export default function NestedScreen({ route }) {
               <View style={styles.icon_small}>
                 <Feather name="sun" size={25} color="#fcd9c8" />
               </View>
+              <Text style={styles.info_text}>
+                {route.params.userPlant.origin.toLowerCase()}
+              </Text>
             </View>
             <View style={styles.info}>
               <View style={styles.icon_small}>
@@ -80,6 +83,9 @@ export default function NestedScreen({ route }) {
                   color="#fcd9c8"
                 />
               </View>
+              <Text style={styles.info_text}>
+                {route.params.userPlant.origin.toLowerCase()}
+              </Text>
             </View>
             <View style={styles.info}>
               <View style={styles.icon_small}>
@@ -89,11 +95,17 @@ export default function NestedScreen({ route }) {
                   color="#fcd9c8"
                 />
               </View>
+              <Text style={styles.info_text}>
+                {route.params.userPlant.origin.toLowerCase()}
+              </Text>
             </View>
             <View style={styles.info}>
               <View style={styles.icon_small}>
                 <Ionicons name="earth" size={25} color="#fcd9c8" />
               </View>
+              <Text style={styles.info_text}>
+                {route.params.userPlant.origin.toLowerCase()}
+              </Text>
             </View>
           </View>
           <View style={styles.bottom}></View>
