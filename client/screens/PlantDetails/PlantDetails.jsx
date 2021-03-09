@@ -1,11 +1,12 @@
 import React from 'react';
-import { SafeAreaView, View, Text } from 'react-native';
+import { SafeAreaView, View, Text, FlatList } from 'react-native';
 import * as Progress from 'react-native-progress';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons';
 import Icon from '../../components/Icons/Icons';
 import { Feather } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import FlipCard from 'react-native-flip-card';
 import styles from './PlantDetails.style';
 
 export default function NestedScreen({ route }) {
@@ -99,16 +100,45 @@ export default function NestedScreen({ route }) {
                 {route.params.userPlant.repot.toLowerCase()}
               </Text>
             </View>
-            <View style={styles.info}>
+            {/* <View style={styles.info}>
               <View style={styles.icon_small}>
                 <Ionicons name="earth" size={20} color="#fcd9c8" />
               </View>
               <Text style={styles.info_text}>
                 {route.params.userPlant.origin.toLowerCase()}
               </Text>
-            </View>
+            </View> */}
           </View>
-          <View style={styles.bottom}></View>
+          <View style={styles.bottom}>
+            <View style={styles.header_container}>
+              <Text style={styles.commonProblems_header}>COMMON PROBLEMS</Text>
+            </View>
+            <FlatList
+              contentContainerStyle={styles.commonProblems}
+              data={route.params.userPlant.common_problems}
+              keyExtractor={(item) => item._id}
+              renderItem={({ item }) => (
+                <FlipCard
+                  style={styles.flipCard}
+                  friction={6}
+                  perspective={1000}
+                  flipHorizontal={false}
+                  flipVertical={true}
+                  flip={false}
+                  clickable={true}
+                >
+                  {/* Face Side */}
+                  <View style={styles.face}>
+                    <Text style={styles.face_text}>{item.symptom}</Text>
+                  </View>
+                  {/* Back Side */}
+                  <View style={styles.back}>
+                    <Text style={styles.back_text}>{item.cause}</Text>
+                  </View>
+                </FlipCard>
+              )}
+            />
+          </View>
         </View>
       </View>
     </SafeAreaView>
