@@ -27,7 +27,13 @@ export default function GreenhouseStackNavigation({
       <Stack.Screen
         name="PlantDetails"
         component={PlantDetails}
-        options={{ title: 'Details' }}
+        options={{
+          title: '',
+          headerStyle: {
+            backgroundColor: 'white',
+          },
+          headerTintColor: '#295240',
+        }}
       />
     </Stack.Navigator>
   );
