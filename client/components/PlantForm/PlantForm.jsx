@@ -106,6 +106,8 @@ export default function PlantForm({ setUserPlants }) {
       });
       setTypeQuery('');
       setNameQuery('');
+      setDateString(moment(new Date()).format('Do MMM YYYY'));
+      setDate(new Date());
     }
   };
 
