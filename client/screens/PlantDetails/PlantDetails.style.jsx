@@ -26,7 +26,11 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
   },
-  middle_bottom: {},
+  middle_bottom: {
+    height: '35%',
+    width: '100%',
+    justifyContent: 'space-evenly',
+  },
   bottom: {},
   header_container: {
     borderBottomColor: '#fcd9c8',
@@ -64,7 +68,6 @@ export default StyleSheet.create({
     color: '#fcd9c8',
   },
   icon: {
-    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 40,
@@ -73,6 +76,15 @@ export default StyleSheet.create({
     height: 40,
     width: 40,
     marginLeft: 15,
+  },
+  icon_small: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 40,
+    borderColor: '#fcd9c8',
+    borderWidth: 2,
+    height: 35,
+    width: 35,
   },
   icon_number: {
     fontSize: 20,

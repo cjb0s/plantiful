@@ -4,6 +4,8 @@ import * as Progress from 'react-native-progress';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons';
 import Icon from '../../components/Icons/Icons';
+import { Feather } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import styles from './PlantDetails.style';
 
 export default function NestedScreen({ route }) {
@@ -40,7 +42,7 @@ export default function NestedScreen({ route }) {
                 <Text style={styles.difficulty_text}>difficulty</Text>
               </View>
               <View style={styles.waterTemp_container}>
-                <View style={[styles.icon]}>
+                <View style={styles.icon}>
                   <MaterialCommunityIcons
                     name="watering-can-outline"
                     size={30}
@@ -64,7 +66,36 @@ export default function NestedScreen({ route }) {
               </View>
             </View>
           </View>
-          <View style={styles.middle_bottom}></View>
+          <View style={styles.middle_bottom}>
+            <View style={styles.info}>
+              <View style={styles.icon_small}>
+                <Feather name="sun" size={25} color="#fcd9c8" />
+              </View>
+            </View>
+            <View style={styles.info}>
+              <View style={styles.icon_small}>
+                <MaterialCommunityIcons
+                  name="baby-bottle-outline"
+                  size={25}
+                  color="#fcd9c8"
+                />
+              </View>
+            </View>
+            <View style={styles.info}>
+              <View style={styles.icon_small}>
+                <MaterialCommunityIcons
+                  name="pot-outline"
+                  size={25}
+                  color="#fcd9c8"
+                />
+              </View>
+            </View>
+            <View style={styles.info}>
+              <View style={styles.icon_small}>
+                <Ionicons name="earth" size={25} color="#fcd9c8" />
+              </View>
+            </View>
+          </View>
           <View style={styles.bottom}></View>
         </View>
       </View>
