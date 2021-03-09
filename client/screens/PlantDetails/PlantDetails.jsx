@@ -5,7 +5,6 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons';
 import Icon from '../../components/Icons/Icons';
 import { Feather } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
 import FlipCard from 'react-native-flip-card';
 import styles from './PlantDetails.style';
 
@@ -91,7 +90,7 @@ export default function NestedScreen({ route }) {
             <View style={styles.info}>
               <View style={styles.icon_small}>
                 <MaterialCommunityIcons
-                  name="pot-outline"
+                  name="bucket-outline"
                   size={20}
                   color="#fcd9c8"
                 />
@@ -100,14 +99,6 @@ export default function NestedScreen({ route }) {
                 {route.params.userPlant.repot.toLowerCase()}
               </Text>
             </View>
-            {/* <View style={styles.info}>
-              <View style={styles.icon_small}>
-                <Ionicons name="earth" size={20} color="#fcd9c8" />
-              </View>
-              <Text style={styles.info_text}>
-                {route.params.userPlant.origin.toLowerCase()}
-              </Text>
-            </View> */}
           </View>
           <View style={styles.bottom}>
             <View style={styles.header_container}>
