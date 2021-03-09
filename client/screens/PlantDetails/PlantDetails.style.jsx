@@ -50,25 +50,42 @@ export default StyleSheet.create({
     width: 120,
     borderRadius: 100,
   },
-  imageText_container: {},
-  icon: {
-    flexDirection: 'row',
+  imageText_container: {
+    width: '60%',
     alignItems: 'center',
+  },
+  difficulty_container: {
     marginRight: 20,
+    marginBottom: 5,
   },
   difficulty_text: {
     fontSize: 16,
     fontFamily: 'FanwoodText_400Regular',
     color: '#fcd9c8',
   },
+  icon: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 40,
+    borderColor: '#fcd9c8',
+    borderWidth: 2,
+    height: 40,
+    width: 40,
+    marginLeft: 15,
+  },
   icon_number: {
     fontSize: 20,
     fontFamily: 'FanwoodText_400Regular',
     color: '#fcd9c8',
+    marginLeft: 5,
   },
   waterTemp_container: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-evenly',
+  },
+  thermometer: {
+    marginLeft: 20,
   },
 });
