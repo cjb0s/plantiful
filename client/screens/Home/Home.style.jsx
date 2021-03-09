@@ -21,11 +21,13 @@ export default StyleSheet.create({
   },
   image_container: {
     alignItems: 'center',
-    width: '100%',
+    justifyContent: 'center',
+    width: 310,
+    height: 330,
   },
   image: {
-    height: 320,
-    width: 320,
+    height: '80%',
+    width: '110%',
     alignItems: 'center',
   },
   topTip: {

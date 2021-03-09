@@ -15,11 +15,13 @@ export default StyleSheet.create({
   },
   image_container: {
     alignItems: 'center',
-    width: '100%',
+    width: 370,
+    height: 100,
+    marginTop: 30,
   },
   image: {
-    height: 200,
-    width: 200,
+    height: '100%',
+    width: '100%',
     alignItems: 'center',
   },
 });

@@ -17,11 +17,21 @@ export default StyleSheet.create({
   header_container: {
     justifyContent: 'center',
   },
-
   notice: {
     fontSize: 25,
     fontFamily: 'Quattrocento_700Bold',
     color: '#295240',
     paddingHorizontal: 20,
+  },
+  image_container: {
+    alignItems: 'center',
+    width: 260,
+    height: 200,
+    marginTop: 60,
+    marginLeft: 45,
+  },
+  image: {
+    height: '100%',
+    width: '100%',
   },
 });

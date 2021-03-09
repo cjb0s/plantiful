@@ -46,6 +46,13 @@ export default function Icon({ plantName, plantStyle }) {
           style={plantStyle}
         />
       );
+    case 'Snake Plant':
+      return (
+        <Image
+          source={require('../../assets/images/SnakePlant.jpeg')}
+          style={plantStyle}
+        />
+      );
     case 'Spider Plant':
       return (
         <Image

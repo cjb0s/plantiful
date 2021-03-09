@@ -5,6 +5,7 @@ import {
   Text,
   FlatList,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 import PlantItem from '../../components/PlantItem/PlantItem';
 import styles from './MyPlants.style';
@@ -15,6 +16,9 @@ export default function MyPlants({ userPlants, setUserPlants, navigation }) {
       <View style={styles.container}>
         <View style={styles.header_container}>
           <Text style={styles.header}>MY PLANTS</Text>
+          {!userPlants.length && (
+            <Text style={styles.notice}>add a plant to get started</Text>
+          )}
         </View>
         {userPlants.length ? (
           <FlatList
@@ -35,7 +39,12 @@ export default function MyPlants({ userPlants, setUserPlants, navigation }) {
             )}
           />
         ) : (
-          <Text style={styles.notice}>add a plant to get started</Text>
+          <View style={styles.image_container}>
+            <Image
+              source={require('../../assets/images/MyPlants.jpeg')}
+              style={styles.image}
+            />
+          </View>
         )}
       </View>
     </SafeAreaView>
