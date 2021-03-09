@@ -2,7 +2,6 @@ import React from 'react';
 import { Image } from 'react-native';
 
 export default function Icon({ plantName, plantStyle }) {
-  console.log(plantStyle);
   switch (plantName) {
     case 'Aloe Vera':
       return (

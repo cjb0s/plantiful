@@ -22,6 +22,9 @@ export default StyleSheet.create({
   middle_top: {
     width: '100%',
     marginBottom: 5,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
   },
   middle_bottom: {},
   bottom: {},
@@ -41,11 +44,31 @@ export default StyleSheet.create({
     color: '#fcd9c8',
     textAlign: 'center',
   },
-  image_container: { flex: 1 },
-  imageText_container: { flex: 3 },
+  image_container: {},
   image: {
     height: 120,
     width: 120,
     borderRadius: 100,
+  },
+  imageText_container: {},
+  icon: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginRight: 20,
+  },
+  difficulty_text: {
+    fontSize: 16,
+    fontFamily: 'FanwoodText_400Regular',
+    color: '#fcd9c8',
+  },
+  icon_number: {
+    fontSize: 20,
+    fontFamily: 'FanwoodText_400Regular',
+    color: '#fcd9c8',
+  },
+  waterTemp_container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
   },
 });

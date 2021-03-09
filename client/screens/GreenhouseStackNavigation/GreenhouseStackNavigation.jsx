@@ -24,7 +24,11 @@ export default function GreenhouseStackNavigation({
         }}
         options={{ headerShown: false, title: 'My Plants' }}
       />
-      <Stack.Screen name="PlantDetails" component={PlantDetails} />
+      <Stack.Screen
+        name="PlantDetails"
+        component={PlantDetails}
+        options={{ title: 'Details' }}
+      />
     </Stack.Navigator>
   );
 }
