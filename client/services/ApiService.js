@@ -1,4 +1,4 @@
-const baseURL = process.env.IP;
+const baseURL = process.env.EXPO_IP;
 
 function fetchRequest(path, options) {
   return fetch(baseURL + path, options)
