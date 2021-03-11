@@ -29,6 +29,7 @@ node_modules
 private
 build
 dist
+.env
 .env.local
 .env.development.local
 .env.test.local
