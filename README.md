@@ -18,7 +18,7 @@ Plantiful is a plant care mobile app designed to help plant owners take better c
 - [Mongoose](https://mongoosejs.com/)
 
 ### Design
-- [Original Illustrations](https://www.amylucymccord.com/)
+- [Original illustrations](https://www.amylucymccord.com/)
 
 
 ## Getting Started
