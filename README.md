@@ -13,12 +13,13 @@ Plantiful is a plant care mobile app designed to help plant owners take better c
 - [Expo](https://expo.io/)
 
 ### Backend
+- [Node.js](https://nodejs.org/en/)
 - [Express](https://expressjs.com/)
 - [MongoDB](https://www.mongodb.com/)
 - [Mongoose](https://mongoosejs.com/)
 
 ### Design
-- [Original illustrations](https://www.amylucymccord.com/)
+- [Original Illustrations](https://www.amylucymccord.com/)
 
 
 ## Getting Started
