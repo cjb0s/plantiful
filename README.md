@@ -25,9 +25,9 @@ Plantiful is a plant care mobile app designed to help plant owners take better c
 1. Fork and clone this repo onto your machine
 2. Populate a mongoDB database with server/models/mock_data.json
 3. Install dependencies and start both client and server  
-`npm install  
-cd server && npm install && nodemon  
-cd client && npm install && expo start`  
+`npm install`  
+`cd server && npm install && nodemon`  
+`cd client && npm install && expo start`  
 4. Create a .env file with the information provided in the .env.example file in the client
 5. Scan the QR code
 
