@@ -1,5 +1,5 @@
 # Plantiful
-![Plantiful logo](https://github.com/cjb0s/plantiful/blob/main/client/assets/images/banner.png)
+![Plantiful logo](https://github.com/cjb0s/plantiful/blob/main/client/assets/banner.png)
 
 ## What is it?
 Plantiful is a plant care mobile app designed to help plant owners take better care of their house plants by:
