@@ -6,10 +6,8 @@ Plantiful is a plant care mobile app designed to help plant owners take better c
 - scheduling watering reminders through push notifications
 - providing key information on keeping happy and healthy house plants
 
-![Plantiful Home](https://github.com/cjb0s/plantiful/blob/main/client/assets/home.png)
-![Plantiful Form](https://github.com/cjb0s/plantiful/blob/main/client/assets/form.png)
-![Plantiful MyPlants](https://github.com/cjb0s/plantiful/blob/main/client/assets/myplants.png)
-![Plantiful PlantDetails](https://github.com/cjb0s/plantiful/blob/main/client/assets/plantdetails.png)
+![Plantiful Screenshots](https://github.com/cjb0s/plantiful/blob/main/client/assets/screenshots.png)
+
 
 ## How was it built?
 ### Frontend
